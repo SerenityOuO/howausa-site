@@ -44,7 +44,7 @@ html.dark .deco{background:repeating-linear-gradient(105deg,transparent 0 22px,r
 a{color:inherit}
 h1,h2,h3{font-family:var(--hand);font-weight:700;margin:0;text-wrap:balance}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-.card,.feat,.post,.nav a,.btn,.trust div,.ic,.theme,.lang select{transition:background-color .4s,border-color .4s,color .4s,box-shadow .4s}
+.card,.feat,.nav a,.btn,.trust div,.ic,.theme,.lang select{transition:background-color .4s,border-color .4s,color .4s,box-shadow .4s}
 
 /* 頁首 */
 .top{display:flex;align-items:center;justify-content:space-between;gap:10px}
@@ -87,7 +87,7 @@ html.dark .hero .pic::before{opacity:1}
 .hero p{margin:4px 0 0;font-size:14px;max-width:24em}
 
 /* 功能格 */
-.grid,.news{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px}
 .feat{display:flex;gap:10px;align-items:flex-start;padding:11px 12px;border-radius:14px;background:var(--card);border:var(--bw) solid var(--line);box-shadow:2px 2px 0 var(--line);min-width:0}
 html.dark .feat{background:rgba(255,255,255,.05);box-shadow:none}
 .ic{flex:none;width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:var(--chip);border:var(--bw) solid var(--line)}
@@ -107,13 +107,6 @@ html.dark .btn.off{box-shadow:none}
 .shot{flex:none;width:46%;max-width:200px;scroll-snap-align:start;margin:0}
 .shot img{display:block;width:100%;height:auto;aspect-ratio:600/1305;object-fit:cover;border-radius:14px;border:var(--bw) solid var(--line)}
 .shot figcaption{font-size:12.5px;color:var(--mute);text-align:center;margin-top:6px}
-
-/* 最近更新 */
-.post{background:var(--card);border:var(--bw) solid var(--line);border-radius:14px;padding:12px;box-shadow:2px 2px 0 var(--line);display:flex;flex-direction:column;gap:6px;min-width:0}
-html.dark .post{background:rgba(255,255,255,.05);box-shadow:none}
-.meta{display:flex;gap:8px;align-items:center;font-size:12px;color:var(--mute);font-variant-numeric:tabular-nums}
-.tag{background:var(--tag);color:var(--tag-ink);border-radius:999px;padding:1px 9px;font-size:12px}
-.post ul{margin:0;padding-left:1.1em;font-size:13px;display:grid;gap:3px}
 
 /* 隱私四格 */
 .trust{display:grid;grid-template-columns:1fr 1fr;gap:10px}
@@ -139,7 +132,7 @@ td:first-child{white-space:nowrap;font-weight:600}
 footer{text-align:center;font-size:12.5px;color:var(--mute);display:grid;gap:6px}
 footer nav{display:flex;flex-wrap:wrap;justify-content:center;gap:4px 14px}
 footer a{text-underline-offset:3px}
-@media (max-width:380px){.grid,.news{grid-template-columns:1fr}.cta{grid-template-columns:1fr}.brand b{font-size:17px}.theme span{display:none}.theme{padding:0 9px}}
+@media (max-width:380px){.grid{grid-template-columns:1fr}.cta{grid-template-columns:1fr}.brand b{font-size:17px}.theme span{display:none}.theme{padding:0 9px}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 <script>(function(){var t=null;try{t=localStorage.getItem('mm-theme')}catch(e){}if(!t)t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';if(t==='dark')document.documentElement.classList.add('dark')})()</script>
@@ -170,7 +163,6 @@ footer a{text-underline-offset:3px}
 <div class="cta"><a class="btn" href="https://testflight.apple.com/join/cSRpbd5j" target="_blank" rel="noopener">Join the iPhone beta</a><span class="btn off">App Store coming soon</span></div>
 <p class="note">Full budgeting is free. Available in English, 日本語, 繁體中文 and 简体中文. iPhone only for now.</p></section>
 <section class="card" id="shots"><h2>Take a look</h2><p class="sub">Real screens from the app. Swipe left for more.</p><div class="strip"><figure class="shot"><img src="../img/s01.jpg" alt="Home" width="600" height="1305"><figcaption>Home</figcaption></figure><figure class="shot"><img src="../img/s06.jpg" alt="New entry" loading="lazy" width="600" height="1305"><figcaption>New entry</figcaption></figure><figure class="shot"><img src="../img/s08.jpg" alt="Budget" loading="lazy" width="600" height="1305"><figcaption>Budget</figcaption></figure><figure class="shot"><img src="../img/s09.jpg" alt="Savings" loading="lazy" width="600" height="1305"><figcaption>Savings</figcaption></figure><figure class="shot"><img src="../img/s04.jpg" alt="Shared ledger" loading="lazy" width="600" height="1305"><figcaption>Shared ledger</figcaption></figure><figure class="shot"><img src="../img/s03.jpg" alt="Widgets" loading="lazy" width="600" height="1305"><figcaption>Widgets</figcaption></figure><figure class="shot"><img src="../img/s05.jpg" alt="Night" loading="lazy" width="600" height="1305"><figcaption>Night</figcaption></figure></div></section>
-<section class="card honey" id="news"><h2>What&#x27;s new</h2><p class="sub">You can also see what changed in each version in the app under Settings → Help → Release Notes.</p><div class="news"><article class="post"><div class="meta"><span class="tag">Build 40</span><time datetime="2026-11-12">11/12</time></div><ul><li>Swipe left on any recap card to pull out the month list and jump to any month.</li><li>Swipe right on a recap to go back home.</li><li>Settings now has a Monthly Recap list for all your past months.</li></ul></article><article class="post"><div class="meta"><span class="tag">Build 39</span><time datetime="2026-11-12">11/12</time></div><ul><li>Swipe up and down to change months and left and right to change cards in the Monthly Recap, following your finger.</li><li>Tap the left half of a recap card for the previous one, the right half for the next.</li><li>Swipe left on the last card for the month list, or right on the first card to go home.</li></ul></article><article class="post"><div class="meta"><span class="tag">Build 38</span><time datetime="2026-11-12">11/12</time></div><ul><li>New Monthly Recap: at the start of each month, see how much you spent, where it went and how much you saved.</li><li>A note on the home screen opens your latest recap.</li><li>In Settings, choose to compare &quot;vs last month&quot; or &quot;vs usual&quot;.</li></ul></article><article class="post"><div class="meta"><span class="tag">Build 37</span><time datetime="2026-11-12">11/12</time></div><ul><li>Data import now supports CSV files exported from CWMoney and 天天記帳.</li><li>If an import goes wrong, tap &quot;Having trouble?&quot; to email the file to the developer.</li><li>Tapping the home screen widget now opens a new entry; you can turn this off in Edit Widget.</li></ul></article></div></section>
 <section class="card peach"><h2>Your money stays yours</h2><div class="trust"><div><b>No ads</b>Open it and log. No ads, ever.</div><div><b>No data collection</b>We have no servers and can&#x27;t see your records.</div><div><b>Your own iCloud</b>Switch phones and everything comes with you.</div><div><b>Face ID lock</b>Hand someone your phone without worry.</div></div></section>
 <footer>
 <nav><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a href="https://www.threads.com/@yuzuki.tw" target="_blank" rel="noopener">Threads @yuzuki.tw</a></nav>

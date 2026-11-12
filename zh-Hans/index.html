@@ -44,7 +44,7 @@ html.dark .deco{background:repeating-linear-gradient(105deg,transparent 0 22px,r
 a{color:inherit}
 h1,h2,h3{font-family:var(--hand);font-weight:700;margin:0;text-wrap:balance}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-.card,.feat,.post,.nav a,.btn,.trust div,.ic,.theme,.lang select{transition:background-color .4s,border-color .4s,color .4s,box-shadow .4s}
+.card,.feat,.nav a,.btn,.trust div,.ic,.theme,.lang select{transition:background-color .4s,border-color .4s,color .4s,box-shadow .4s}
 
 /* 頁首 */
 .top{display:flex;align-items:center;justify-content:space-between;gap:10px}
@@ -87,7 +87,7 @@ html.dark .hero .pic::before{opacity:1}
 .hero p{margin:4px 0 0;font-size:14px;max-width:24em}
 
 /* 功能格 */
-.grid,.news{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px}
 .feat{display:flex;gap:10px;align-items:flex-start;padding:11px 12px;border-radius:14px;background:var(--card);border:var(--bw) solid var(--line);box-shadow:2px 2px 0 var(--line);min-width:0}
 html.dark .feat{background:rgba(255,255,255,.05);box-shadow:none}
 .ic{flex:none;width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:var(--chip);border:var(--bw) solid var(--line)}
@@ -107,13 +107,6 @@ html.dark .btn.off{box-shadow:none}
 .shot{flex:none;width:46%;max-width:200px;scroll-snap-align:start;margin:0}
 .shot img{display:block;width:100%;height:auto;aspect-ratio:600/1305;object-fit:cover;border-radius:14px;border:var(--bw) solid var(--line)}
 .shot figcaption{font-size:12.5px;color:var(--mute);text-align:center;margin-top:6px}
-
-/* 最近更新 */
-.post{background:var(--card);border:var(--bw) solid var(--line);border-radius:14px;padding:12px;box-shadow:2px 2px 0 var(--line);display:flex;flex-direction:column;gap:6px;min-width:0}
-html.dark .post{background:rgba(255,255,255,.05);box-shadow:none}
-.meta{display:flex;gap:8px;align-items:center;font-size:12px;color:var(--mute);font-variant-numeric:tabular-nums}
-.tag{background:var(--tag);color:var(--tag-ink);border-radius:999px;padding:1px 9px;font-size:12px}
-.post ul{margin:0;padding-left:1.1em;font-size:13px;display:grid;gap:3px}
 
 /* 隱私四格 */
 .trust{display:grid;grid-template-columns:1fr 1fr;gap:10px}
@@ -139,7 +132,7 @@ td:first-child{white-space:nowrap;font-weight:600}
 footer{text-align:center;font-size:12.5px;color:var(--mute);display:grid;gap:6px}
 footer nav{display:flex;flex-wrap:wrap;justify-content:center;gap:4px 14px}
 footer a{text-underline-offset:3px}
-@media (max-width:380px){.grid,.news{grid-template-columns:1fr}.cta{grid-template-columns:1fr}.brand b{font-size:17px}.theme span{display:none}.theme{padding:0 9px}}
+@media (max-width:380px){.grid{grid-template-columns:1fr}.cta{grid-template-columns:1fr}.brand b{font-size:17px}.theme span{display:none}.theme{padding:0 9px}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 <script>(function(){var t=null;try{t=localStorage.getItem('mm-theme')}catch(e){}if(!t)t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';if(t==='dark')document.documentElement.classList.add('dark')})()</script>
@@ -170,7 +163,6 @@ footer a{text-underline-offset:3px}
 <div class="cta"><a class="btn" href="https://testflight.apple.com/join/cSRpbd5j" target="_blank" rel="noopener">iPhone 公开测试</a><span class="btn off">App Store 即将上架</span></div>
 <p class="note">免费就能完整记账。支持简体中文、繁體中文、English、日本語，目前只有 iPhone。</p></section>
 <section class="card" id="shots"><h2>看看界面</h2><p class="sub">都是 App 里的真实界面，往左滑看更多。</p><div class="strip"><figure class="shot"><img src="../img/s01.jpg" alt="首页" width="600" height="1305"><figcaption>首页</figcaption></figure><figure class="shot"><img src="../img/s06.jpg" alt="记一笔" loading="lazy" width="600" height="1305"><figcaption>记一笔</figcaption></figure><figure class="shot"><img src="../img/s08.jpg" alt="预算" loading="lazy" width="600" height="1305"><figcaption>预算</figcaption></figure><figure class="shot"><img src="../img/s09.jpg" alt="存钱罐" loading="lazy" width="600" height="1305"><figcaption>存钱罐</figcaption></figure><figure class="shot"><img src="../img/s04.jpg" alt="共享账本" loading="lazy" width="600" height="1305"><figcaption>共享账本</figcaption></figure><figure class="shot"><img src="../img/s03.jpg" alt="桌面小组件" loading="lazy" width="600" height="1305"><figcaption>桌面小组件</figcaption></figure><figure class="shot"><img src="../img/s05.jpg" alt="夜晚" loading="lazy" width="600" height="1305"><figcaption>夜晚</figcaption></figure></div></section>
-<section class="card honey" id="news"><h2>最近更新</h2><p class="sub">每一版改了什么，App 里“设置 → 说明与联系 → 更新日志”也能看到。</p><div class="news"><article class="post"><div class="meta"><span class="tag">版本 40</span><time datetime="2026-11-12">11/12</time></div><ul><li>每月回顾任何一张往左滑，都能拉出月份列表、点一个月直接跳过去。</li><li>每月回顾往右滑就回到主页。</li><li>设置新增“每月回顾”列表，可以看以前每个月的回顾。</li></ul></article><article class="post"><div class="meta"><span class="tag">版本 39</span><time datetime="2026-11-12">11/12</time></div><ul><li>每月回顾上下滑换月份、左右滑换张，都会跟着手指走。</li><li>点回顾左半边上一张、右半边下一张。</li><li>最后一张往左滑出月份列表，第一张往右滑回主页。</li></ul></article><article class="post"><div class="meta"><span class="tag">版本 38</span><time datetime="2026-11-12">11/12</time></div><ul><li>新增每月回顾：每个月初帮你整理上个月花了多少、钱花去哪、存下多少。</li><li>主页会贴一张便条，点开就能看这个月的回顾。</li><li>回顾可以在设置里选“跟上个月比”或“跟平常比”。</li></ul></article><article class="post"><div class="meta"><span class="tag">版本 37</span><time datetime="2026-11-12">11/12</time></div><ul><li>数据导入支持 CWMoney 和天天记账导出的 CSV。</li><li>导入遇到问题时，可以按“遇到问题？”把文件寄给开发者。</li><li>桌面小组件点一下直接打开记一笔，长按“编辑小组件”可以关掉。</li></ul></article></div></section>
 <section class="card peach"><h2>账只在你手上</h2><div class="trust"><div><b>没有广告</b>打开就是记账，不会弹出广告。</div><div><b>不收集数据</b>我们没有服务器，看不到你的账。</div><div><b>你的 iCloud</b>换手机数据也还在。</div><div><b>Face ID 上锁</b>别人拿到手机也打不开。</div></div></section>
 <footer>
 <nav><a href="privacy.html">隐私政策</a><a href="terms.html">使用条款</a><a href="https://www.threads.com/@yuzuki.tw" target="_blank" rel="noopener">Threads @yuzuki.tw</a></nav>

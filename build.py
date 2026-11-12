@@ -3,7 +3,6 @@
 - 隱私權政策、使用條款：主程式儲存庫的 `上架準備/隱私權政策.md`、`上架準備/使用條款.md`，
   只取「## 繁體中文」「## 日本語」「## English」「## 简体中文」各段的內容。
 - 首頁文字：這個儲存庫的 `landing.json`。
-- 首頁「最近更新」：主程式儲存庫的 `app/src/features/changelog/entries.ts`（跟 App 的更新日誌同一份，需要 node）。
 - 外觀照 `設計稿/產品介紹網站_2026-11-12/定案.md`：白天＝午後手帳、夜晚＝雨夜床邊窗，右上切換。
 
 用法：python3 build.py [主程式儲存庫路徑]（預設 ~/Projects/Money_Manager）
@@ -63,7 +62,7 @@ html.dark .deco{background:repeating-linear-gradient(105deg,transparent 0 22px,r
 a{color:inherit}
 h1,h2,h3{font-family:var(--hand);font-weight:700;margin:0;text-wrap:balance}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-.card,.feat,.post,.nav a,.btn,.trust div,.ic,.theme,.lang select{transition:background-color .4s,border-color .4s,color .4s,box-shadow .4s}
+.card,.feat,.nav a,.btn,.trust div,.ic,.theme,.lang select{transition:background-color .4s,border-color .4s,color .4s,box-shadow .4s}
 
 /* 頁首 */
 .top{display:flex;align-items:center;justify-content:space-between;gap:10px}
@@ -106,7 +105,7 @@ html.dark .hero .pic::before{opacity:1}
 .hero p{margin:4px 0 0;font-size:14px;max-width:24em}
 
 /* 功能格 */
-.grid,.news{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px}
 .feat{display:flex;gap:10px;align-items:flex-start;padding:11px 12px;border-radius:14px;background:var(--card);border:var(--bw) solid var(--line);box-shadow:2px 2px 0 var(--line);min-width:0}
 html.dark .feat{background:rgba(255,255,255,.05);box-shadow:none}
 .ic{flex:none;width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:var(--chip);border:var(--bw) solid var(--line)}
@@ -126,13 +125,6 @@ html.dark .btn.off{box-shadow:none}
 .shot{flex:none;width:46%;max-width:200px;scroll-snap-align:start;margin:0}
 .shot img{display:block;width:100%;height:auto;aspect-ratio:600/1305;object-fit:cover;border-radius:14px;border:var(--bw) solid var(--line)}
 .shot figcaption{font-size:12.5px;color:var(--mute);text-align:center;margin-top:6px}
-
-/* 最近更新 */
-.post{background:var(--card);border:var(--bw) solid var(--line);border-radius:14px;padding:12px;box-shadow:2px 2px 0 var(--line);display:flex;flex-direction:column;gap:6px;min-width:0}
-html.dark .post{background:rgba(255,255,255,.05);box-shadow:none}
-.meta{display:flex;gap:8px;align-items:center;font-size:12px;color:var(--mute);font-variant-numeric:tabular-nums}
-.tag{background:var(--tag);color:var(--tag-ink);border-radius:999px;padding:1px 9px;font-size:12px}
-.post ul{margin:0;padding-left:1.1em;font-size:13px;display:grid;gap:3px}
 
 /* 隱私四格 */
 .trust{display:grid;grid-template-columns:1fr 1fr;gap:10px}
@@ -158,7 +150,7 @@ td:first-child{white-space:nowrap;font-weight:600}
 footer{text-align:center;font-size:12.5px;color:var(--mute);display:grid;gap:6px}
 footer nav{display:flex;flex-wrap:wrap;justify-content:center;gap:4px 14px}
 footer a{text-underline-offset:3px}
-@media (max-width:380px){.grid,.news{grid-template-columns:1fr}.cta{grid-template-columns:1fr}.brand b{font-size:17px}.theme span{display:none}.theme{padding:0 9px}}
+@media (max-width:380px){.grid{grid-template-columns:1fr}.cta{grid-template-columns:1fr}.brand b{font-size:17px}.theme span{display:none}.theme{padding:0 9px}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 """
 
@@ -262,18 +254,6 @@ def sections(md: str) -> dict[str, str]:
     return {k: "\n".join(v) for k, v in found.items()}
 
 
-def changelog() -> list[dict]:
-    """讀 App 的更新日誌（TypeScript），拿掉型別後交給 node 轉成 JSON。"""
-    src = (APP / "app/src/features/changelog/entries.ts").read_text(encoding="utf-8")
-    js = re.sub(r"^import .*?;\n", "", src, flags=re.M)
-    js = re.sub(r"export interface \w+ \{.*?\n\}\n", "", js, flags=re.S)
-    js = re.sub(r"export const changelog\s*:\s*[\w\[\]]+\s*=", "const changelog =", js)
-    js = js.split("export const changelogNotes")[0]
-    js += "\nprocess.stdout.write(JSON.stringify(changelog));"
-    out = subprocess.run(["node", "-e", js], capture_output=True, text=True, check=True).stdout
-    return json.loads(out)
-
-
 def shell(lang, html_lang, page_key, title, desc, body):
     T = TEXT[lang]
     file = "index.html" if page_key == "index" else f"{page_key}.html"
@@ -332,7 +312,7 @@ def shell(lang, html_lang, page_key, title, desc, body):
 """
 
 
-def landing(lang, entries) -> str:
+def landing(lang) -> str:
     T = TEXT[lang]
     e = html.escape
     feats = "".join(
@@ -343,12 +323,6 @@ def landing(lang, entries) -> str:
         f'<figure class="shot"><img src="../img/{name}.jpg" alt="{e(cap)}"{"" if i == 0 else " loading=\"lazy\""} width="600" height="1305"><figcaption>{e(cap)}</figcaption></figure>'
         for i, (name, cap) in enumerate(zip(SHOTS, T["shots"]))
     )
-    posts = []
-    for it in entries[:4]:
-        notes = it["notes"].get(lang) or it["notes"]["zh-Hant"]
-        m, d = it["date"][5:7].lstrip("0"), it["date"][8:10].lstrip("0")
-        lis = "".join(f"<li>{e(n)}</li>" for n in notes[:3])
-        posts.append(f'<article class="post"><div class="meta"><span class="tag">{e(T["build"])} {it["build"]}</span><time datetime="{it["date"]}">{m}/{d}</time></div><ul>{lis}</ul></article>')
     trust = "".join(f"<div><b>{e(t)}</b>{e(d)}</div>" for t, d in T["trust"])
     return f"""{SVG}
 <section class="card hero"><div class="pic" role="img" aria-label="{e(T["heroAlt"])}"><div class="txt"><h1>{e(T["name"])}</h1><p>{e(T["tagline"])}</p></div></div></section>
@@ -356,17 +330,15 @@ def landing(lang, entries) -> str:
 <div class="cta"><a class="btn" href="{TESTFLIGHT}" target="_blank" rel="noopener">{e(T["ctaTest"])}</a><span class="btn off">{e(T["ctaStore"])}</span></div>
 <p class="note">{e(T["note"])}</p></section>
 <section class="card" id="shots"><h2>{e(T["shotsTitle"])}</h2><p class="sub">{e(T["shotsSub"])}</p><div class="strip">{shots}</div></section>
-<section class="card honey" id="news"><h2>{e(T["newsTitle"])}</h2><p class="sub">{e(T["newsSub"])}</p><div class="news">{"".join(posts)}</div></section>
 <section class="card peach"><h2>{e(T["trustTitle"])}</h2><div class="trust">{trust}</div></section>"""
 
 
 def main():
-    entries = changelog()
     for code, label, hl, _ in LANGS:
         T = TEXT[code]
         out = ROOT / code / "index.html"
         out.parent.mkdir(exist_ok=True)
-        out.write_text(shell(code, hl, "index", T["title"], T["description"], landing(code, entries)), encoding="utf-8")
+        out.write_text(shell(code, hl, "index", T["title"], T["description"], landing(code)), encoding="utf-8")
         print("寫入", out.relative_to(ROOT))
     for key, filename in PAGES.items():
         parts = sections((SRC / filename).read_text(encoding="utf-8"))

@@ -26,9 +26,6 @@
     "shotsTitle": "看看畫面",
     "shotsSub": "都是 App 裡的真畫面，往左滑看更多。",
     "shots": ["主頁", "記一筆", "預算", "存錢罐", "共享帳本", "桌面小插件", "夜晚"],
-    "newsTitle": "最近更新",
-    "newsSub": "每一版改了什麼，App 裡「設定 → 說明與聯絡 → 更新日誌」也看得到。",
-    "build": "建置",
     "trustTitle": "帳只在你手上",
     "trust": [
       ["沒有廣告", "打開就是記帳，不會跳出廣告。"],
@@ -65,9 +62,6 @@
     "shotsTitle": "画面を見る",
     "shotsSub": "すべてアプリの実際の画面です。左にスワイプでもっと見られます。",
     "shots": ["ホーム", "記録", "予算", "貯金箱", "共有家計簿", "ウィジェット", "夜"],
-    "newsTitle": "最近のアップデート",
-    "newsSub": "各バージョンの変更点は、アプリの「設定 → ヘルプ → アップデート履歴」でも見られます。",
-    "build": "ビルド",
     "trustTitle": "データはあなたの手元に",
     "trust": [
       ["広告なし", "開けばすぐ記録。広告は出ません。"],
@@ -104,9 +98,6 @@
     "shotsTitle": "Take a look",
     "shotsSub": "Real screens from the app. Swipe left for more.",
     "shots": ["Home", "New entry", "Budget", "Savings", "Shared ledger", "Widgets", "Night"],
-    "newsTitle": "What's new",
-    "newsSub": "You can also see what changed in each version in the app under Settings → Help → Release Notes.",
-    "build": "Build",
     "trustTitle": "Your money stays yours",
     "trust": [
       ["No ads", "Open it and log. No ads, ever."],
@@ -143,9 +134,6 @@
     "shotsTitle": "看看界面",
     "shotsSub": "都是 App 里的真实界面，往左滑看更多。",
     "shots": ["首页", "记一笔", "预算", "存钱罐", "共享账本", "桌面小组件", "夜晚"],
-    "newsTitle": "最近更新",
-    "newsSub": "每一版改了什么，App 里“设置 → 说明与联系 → 更新日志”也能看到。",
-    "build": "版本",
     "trustTitle": "账只在你手上",
     "trust": [
       ["没有广告", "打开就是记账，不会弹出广告。"],
