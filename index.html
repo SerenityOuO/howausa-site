@@ -1,33 +1,10 @@
 <!doctype html>
 <html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Howausa</title><style>
-:root{--bg:#F6F0E6;--card:#FFFDF8;--ink:#3B3128;--sub:#8A7B6C;--line:#E6DACB;--accent:#C0794B;--chip:#EFE4D4}
-@media (prefers-color-scheme:dark){:root{--bg:#14110E;--card:#1E1A16;--ink:#EDE3D6;--sub:#A3968A;--line:#3A322B;--accent:#E2A174;--chip:#2A241F}}
-*{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.75 -apple-system,BlinkMacSystemFont,"Hiragino Sans","PingFang TC","PingFang SC","Noto Sans CJK TC",sans-serif;-webkit-text-size-adjust:100%}
-.wrap{max-width:760px;margin:0 auto;padding:20px 16px 56px}
-header{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;margin-bottom:18px}
-.tabs,.langs{display:flex;flex-wrap:wrap;gap:6px}
-.tabs a,.langs a{padding:6px 12px;border-radius:999px;text-decoration:none;color:var(--sub);background:var(--chip);font-size:14px}
-.tabs a.on,.langs a.on{background:var(--accent);color:#fff}
-article{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:24px 22px}
-h1{font-size:24px;line-height:1.35;margin:0 0 4px}
-h2{font-size:18px;margin:28px 0 8px}
-.date{color:var(--sub);font-size:14px;margin:0 0 18px}
-p{margin:0 0 12px}
-ul{margin:0 0 12px;padding-left:22px}
-li{margin:4px 0}
-a{color:var(--accent);word-break:break-all}
-.table{overflow-x:auto;margin:0 0 12px}
-table{border-collapse:collapse;width:100%;font-size:15px}
-th,td{text-align:left;vertical-align:top;border-bottom:1px solid var(--line);padding:9px 8px}
-th{color:var(--sub);font-weight:600;white-space:nowrap}
-td:first-child{white-space:nowrap;font-weight:600}
-footer{color:var(--sub);font-size:13px;text-align:center;margin-top:20px}
-</style>
+<title>Howausa</title>
 <script>
-var l=(navigator.language||"en").toLowerCase(),d="en";
-if(l.indexOf("ja")===0)d="ja";else if(/^zh-(hans|cn|sg)/.test(l))d="zh-Hans";else if(l.indexOf("zh")===0)d="zh-Hant";
-location.replace(d+"/privacy.html");
+var d=null;try{d=localStorage.getItem('mm-lang')}catch(e){}
+if(!/^(zh-Hant|zh-Hans|ja|en)$/.test(d||'')){var l=(navigator.language||'en').toLowerCase();d='en';
+if(l.indexOf('ja')===0)d='ja';else if(/^zh-(hans|cn|sg)/.test(l))d='zh-Hans';else if(l.indexOf('zh')===0)d='zh-Hant';}
+location.replace(d+'/'+location.hash);
 </script></head>
-<body><div class="wrap"><article><h1>Howausa</h1><ul><li><a href="zh-Hant/privacy.html">繁體中文</a></li><li><a href="ja/privacy.html">日本語</a></li><li><a href="en/privacy.html">English</a></li><li><a href="zh-Hans/privacy.html">简体中文</a></li></ul></article></div></body></html>
+<body style="font-family:system-ui;background:#fcf4e6;color:#5a3826"><ul><li><a href="zh-Hant/">棉棉兔記帳</a></li><li><a href="ja/">わたうさ家計簿</a></li><li><a href="en/">Howausa: Bunny Budget</a></li><li><a href="zh-Hans/">棉棉兔记账</a></li></ul></body></html>
