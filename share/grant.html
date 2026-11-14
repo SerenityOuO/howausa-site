@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<meta name="referrer" content="no-referrer">
+<title>棉棉兔記帳</title>
+<link rel="apple-touch-icon" href="../img/avatar.png">
+<link rel="icon" href="../img/avatar.png">
+<style>
+:root{--bg:#fcf4e6;--card:#fffaf1;--ink:#5a3826;--mute:#8f6f5c;--line:#5a3826;--cta:#f0a08e;--cta-ink:#4a2a1c;--shadow:4px 4px 0 var(--line);--bw:2.5px;--r:22px;
+  --ui:"Huninn","PingFang TC","PingFang SC","Hiragino Sans",system-ui,sans-serif}
+@media (prefers-color-scheme:dark){:root{--bg:#1b1e3b;--card:rgba(52,58,112,.72);--ink:#fff1dc;--mute:#c7bfd6;--line:rgba(243,234,240,.28);--cta:#ffb26a;--cta-ink:#2a1d18;
+  --shadow:0 18px 40px -22px rgba(0,0,0,.8),0 0 0 1px rgba(243,234,240,.08) inset;--bw:1px;--r:24px}}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;display:grid;place-items:center;padding:24px 16px;background:var(--bg);color:var(--ink);font-family:var(--ui);font-size:15px;line-height:1.7}
+.card{width:100%;max-width:360px;background:var(--card);border:var(--bw) solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);padding:28px 24px 24px;text-align:center}
+.bun{width:72px;height:72px;border-radius:50%;display:block;margin:0 auto 10px}
+p{margin:0 0 18px}
+.btn{display:block;width:100%;padding:14px 16px;border:var(--bw) solid var(--line);border-radius:999px;background:var(--cta);color:var(--cta-ink);font:700 17px/1.3 var(--ui);text-decoration:none;box-shadow:3px 3px 0 var(--line)}
+.btn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--line)}
+</style>
+</head>
+<body>
+<main class="card">
+  <img class="bun" src="../img/avatar.png" alt="">
+  <p id="msg"></p>
+  <a class="btn" id="back" href="#"></a>
+</main>
+<script>
+(function () {
+  var T = {
+    'zh-Hant': { msg: '好了！回到棉棉兔記帳繼續。', back: '回到 App' },
+    'zh-Hans': { msg: '好了！回到棉棉兔记账继续。', back: '回到 App' },
+    en: { msg: 'All set! Head back to the app to continue.', back: 'Back to the app' },
+    ja: { msg: '完了しました。アプリに戻って続けてください。', back: 'アプリに戻る' },
+  };
+  var nav = (navigator.languages || [navigator.language || 'zh-Hant']).join(',').toLowerCase();
+  var lang = /zh-(hans|cn|sg)/.test(nav) ? 'zh-Hans' : /^zh|,zh/.test(nav) ? 'zh-Hant' : /^ja|,ja/.test(nav) ? 'ja' : /^en|,en/.test(nav) ? 'en' : 'zh-Hant';
+  document.documentElement.lang = lang;
+  document.getElementById('msg').textContent = T[lang].msg;
+  document.getElementById('back').textContent = T[lang].back;
+
+  // Google 授權頁回到這裡：只把「勾了哪些檔」「取消了沒」帶回 App。授權碼（code）用不到，不轉、也從網址列清掉。
+  var q = new URLSearchParams(location.search);
+  var out = new URLSearchParams();
+  if (q.get('picked_file_ids')) out.set('picked', q.get('picked_file_ids'));
+  if (q.get('state')) out.set('state', q.get('state'));
+  if (q.get('error')) out.set('error', q.get('error'));
+  history.replaceState(null, '', location.pathname);
+  var query = out.toString();
+  var app = /android/i.test(navigator.userAgent)
+    ? 'intent://drive-granted?' + query + '#Intent;scheme=daak;package=com.yuzuki.howausa;end'
+    : 'daak://drive-granted?' + query;
+  document.getElementById('back').href = app;
+  location.replace(app);
+})();
+</script>
+</body>
+</html>

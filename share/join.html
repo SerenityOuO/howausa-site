@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>棉棉兔記帳｜共享帳本邀請</title>
+<link rel="apple-touch-icon" href="../img/avatar.png">
+<link rel="icon" href="../img/avatar.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Huninn&family=LXGW+WenKai+TC:wght@400;700&display=swap">
+<style>
+:root{
+  --bg:#fcf4e6;--card:#fffaf1;--ink:#5a3826;--mute:#8f6f5c;--line:#5a3826;--cta:#f0a08e;--cta-ink:#4a2a1c;--link:#a2553a;
+  --shadow:4px 4px 0 var(--line);--bw:2.5px;--r:22px;
+  --hand:"LXGW WenKai TC","Huninn","PingFang TC","Hiragino Sans",serif;--ui:"Huninn","PingFang TC","PingFang SC","Hiragino Sans",system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root{
+  --bg:#1b1e3b;--card:rgba(52,58,112,.72);--ink:#fff1dc;--mute:#c7bfd6;--line:rgba(243,234,240,.28);--cta:#ffb26a;--cta-ink:#2a1d18;--link:#ffc98f;
+  --shadow:0 18px 40px -22px rgba(0,0,0,.8),0 0 0 1px rgba(243,234,240,.08) inset;--bw:1px;--r:24px;
+}}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;display:grid;place-items:center;padding:24px 16px;background:var(--bg);color:var(--ink);font-family:var(--ui);font-size:15px;line-height:1.7}
+.card{width:100%;max-width:380px;background:var(--card);border:var(--bw) solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);padding:28px 24px 24px;text-align:center}
+.bun{width:96px;height:96px;border-radius:50%;display:block;margin:0 auto 12px}
+h1{font-family:var(--hand);font-weight:700;font-size:22px;line-height:1.4;margin:0 0 6px;text-wrap:balance}
+.ledger{font-family:var(--hand);font-size:26px;font-weight:700;margin:4px 0 18px;word-break:break-word}
+.btn{display:block;width:100%;padding:14px 16px;border:var(--bw) solid var(--line);border-radius:999px;background:var(--cta);color:var(--cta-ink);font:700 17px/1.3 var(--ui);text-decoration:none;box-shadow:3px 3px 0 var(--line);transition:transform .12s ease,box-shadow .12s ease}
+.btn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--line)}
+.note{color:var(--mute);font-size:13px;margin:16px 0 0}
+.note a{color:var(--link)}
+.bad{color:var(--mute);margin:8px 0 0}
+</style>
+</head>
+<body>
+<main class="card">
+  <img class="bun" src="../img/avatar.png" alt="">
+  <h1 id="title"></h1>
+  <div class="ledger" id="ledger"></div>
+  <a class="btn" id="open" href="#"></a>
+  <p class="note"><span id="noapp"></span> <a id="get" href="../"></a></p>
+</main>
+<script>
+(function () {
+  var T = {
+    'zh-Hant': { title: '{o}邀請你一起記帳', anon: '有人', open: '用棉棉兔記帳打開', noapp: '還沒有 App？', get: '下載棉棉兔記帳', bad: '這個邀請連結不完整，請對方重新傳一次。' },
+    'zh-Hans': { title: '{o}邀请你一起记账', anon: '有人', open: '用棉棉兔记账打开', noapp: '还没有 App？', get: '下载棉棉兔记账', bad: '这个邀请链接不完整，请对方重新发一次。' },
+    en: { title: '{o} invited you to keep a ledger together', anon: 'Someone', open: 'Open in Cotton Budget', noapp: "Don't have the app?", get: 'Get Cotton Budget', bad: 'This invite link is incomplete. Ask them to send it again.' },
+    ja: { title: '{o}から一緒に家計簿をつけようと招待が届きました', anon: '誰か', open: 'わたうさ家計簿で開く', noapp: 'アプリをお持ちでない方', get: 'ダウンロード', bad: '招待リンクが不完全です。もう一度送ってもらってください。' },
+  };
+  var nav = (navigator.languages || [navigator.language || 'zh-Hant']).join(',').toLowerCase();
+  var lang = /zh-(hans|cn|sg)/.test(nav) ? 'zh-Hans' : /^zh|,zh/.test(nav) ? 'zh-Hant' : /^ja|,ja/.test(nav) ? 'ja' : /^en|,en/.test(nav) ? 'en' : 'zh-Hant';
+  var t = T[lang];
+  document.documentElement.lang = lang;
+
+  // 邀請內容放在 # 後面（不會送到網站伺服器）：v 版本、l 帳本、n 帳本名稱、o 邀請人、f 資料夾、g 共用改動檔、s 共用快照
+  var p = new URLSearchParams(location.hash.slice(1));
+  var ok = p.get('l') && p.get('f') && p.get('g') && p.get('s');
+  var owner = (p.get('o') || '').slice(0, 40);
+  document.getElementById('title').textContent = t.title.replace('{o}', owner || t.anon);
+  document.getElementById('ledger').textContent = (p.get('n') || '').slice(0, 60);
+  document.getElementById('noapp').textContent = t.noapp;
+  document.getElementById('get').textContent = t.get;
+  var btn = document.getElementById('open');
+  btn.textContent = t.open;
+  if (!ok) {
+    btn.remove();
+    var bad = document.createElement('p');
+    bad.className = 'bad';
+    bad.textContent = t.bad;
+    document.getElementById('ledger').after(bad);
+    return;
+  }
+  var query = p.toString();
+  var android = /android/i.test(navigator.userAgent);
+  var app = android
+    ? 'intent://drive-join?' + query + '#Intent;scheme=daak;package=com.yuzuki.howausa;end'
+    : 'daak://drive-join?' + query;
+  btn.href = app;
+  // 有裝 App 的直接跳過去（被瀏覽器擋下的話，按鈕照樣可以按）
+  setTimeout(function () { location.href = app; }, 400);
+})();
+</script>
+</body>
+</html>
