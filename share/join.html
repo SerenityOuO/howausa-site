@@ -29,10 +29,19 @@ h1{font-family:var(--hand);font-weight:700;font-size:22px;line-height:1.4;margin
 .note{color:var(--mute);font-size:13px;margin:16px 0 0}
 .note a{color:var(--link)}
 .bad{color:var(--mute);margin:8px 0 0}
+/* 不停留：先只放兔子和一行「正在打開」，App 沒打開（沒裝、被瀏覽器擋）才顯示整張卡 */
+.opening{display:grid;place-items:center;gap:10px;color:var(--mute);font-size:15px}
+.opening .bun{width:72px;height:72px;margin:0;animation:hop 1s ease-in-out infinite}
+@keyframes hop{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+.card{animation:rise .35s cubic-bezier(.22,1,.36,1)}
+@keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+[hidden]{display:none!important}
+@media (prefers-reduced-motion:reduce){.opening .bun,.card{animation:none}}
 </style>
 </head>
 <body>
-<main class="card">
+<div class="opening" id="opening"><img class="bun" src="../img/avatar.png" alt=""><span id="openingText"></span></div>
+<main class="card" id="card" hidden>
   <img class="bun" src="../img/avatar.png" alt="">
   <h1 id="title"></h1>
   <div class="ledger" id="ledger"></div>
@@ -42,19 +51,24 @@ h1{font-family:var(--hand);font-weight:700;font-size:22px;line-height:1.4;margin
 <script>
 (function () {
   var T = {
-    'zh-Hant': { title: '{o}邀請你一起記帳', anon: '有人', open: '用棉棉兔記帳打開', noapp: '還沒有 App？', get: '下載棉棉兔記帳', bad: '這個邀請連結不完整，請對方重新傳一次。' },
-    'zh-Hans': { title: '{o}邀请你一起记账', anon: '有人', open: '用棉棉兔记账打开', noapp: '还没有 App？', get: '下载棉棉兔记账', bad: '这个邀请链接不完整，请对方重新发一次。' },
-    en: { title: '{o} invited you to keep a ledger together', anon: 'Someone', open: 'Open in Cotton Budget', noapp: "Don't have the app?", get: 'Get Cotton Budget', bad: 'This invite link is incomplete. Ask them to send it again.' },
-    ja: { title: '{o}から一緒に家計簿をつけようと招待が届きました', anon: '誰か', open: 'わたうさ家計簿で開く', noapp: 'アプリをお持ちでない方', get: 'ダウンロード', bad: '招待リンクが不完全です。もう一度送ってもらってください。' },
+    'zh-Hant': { opening: '正在打開棉棉兔記帳…', title: '{o}邀請你一起記帳', anon: '有人', open: '用棉棉兔記帳打開', noapp: '還沒有 App？', get: '下載棉棉兔記帳', bad: '這個邀請連結不完整，請對方重新傳一次。' },
+    'zh-Hans': { opening: '正在打开棉棉兔记账…', title: '{o}邀请你一起记账', anon: '有人', open: '用棉棉兔记账打开', noapp: '还没有 App？', get: '下载棉棉兔记账', bad: '这个邀请链接不完整，请对方重新发一次。' },
+    en: { opening: 'Opening Cotton Budget…', title: '{o} invited you to keep a ledger together', anon: 'Someone', open: 'Open in Cotton Budget', noapp: "Don't have the app?", get: 'Get Cotton Budget', bad: 'This invite link is incomplete. Ask them to send it again.' },
+    ja: { opening: 'わたうさ家計簿を開いています…', title: '{o}から一緒に家計簿をつけようと招待が届きました', anon: '誰か', open: 'わたうさ家計簿で開く', noapp: 'アプリをお持ちでない方', get: 'ダウンロード', bad: '招待リンクが不完全です。もう一度送ってもらってください。' },
   };
   var nav = (navigator.languages || [navigator.language || 'zh-Hant']).join(',').toLowerCase();
   var lang = /zh-(hans|cn|sg)/.test(nav) ? 'zh-Hans' : /^zh|,zh/.test(nav) ? 'zh-Hant' : /^ja|,ja/.test(nav) ? 'ja' : /^en|,en/.test(nav) ? 'en' : 'zh-Hant';
   var t = T[lang];
   document.documentElement.lang = lang;
 
-  // 邀請內容放在 # 後面（不會送到網站伺服器）：v 版本、l 帳本、n 帳本名稱、o 邀請人、f 資料夾、g 共用改動檔、s 共用快照
+  // 邀請內容放在 # 後面（不會送到網站伺服器）：v 版本、l 帳本、n 帳本名稱、o 邀請人、
+  // f 資料夾、g 共用改動檔、s 共用快照（雲端硬碟）、c iCloud 邀請網址（iPhone 邀請才有）。兩種至少要有一種，App 會自己判斷走哪一種。
   var p = new URLSearchParams(location.hash.slice(1));
-  var ok = p.get('l') && p.get('f') && p.get('g') && p.get('s');
+  var ok = p.get('l') && ((p.get('f') && p.get('g') && p.get('s')) || /^https:\/\/www\.icloud\.com\/share\//.test(p.get('c') || ''));
+  var opening = document.getElementById('opening');
+  var card = document.getElementById('card');
+  document.getElementById('openingText').textContent = t.opening;
+  function showCard() { opening.hidden = true; card.hidden = false; }
   var owner = (p.get('o') || '').slice(0, 40);
   document.getElementById('title').textContent = t.title.replace('{o}', owner || t.anon);
   document.getElementById('ledger').textContent = (p.get('n') || '').slice(0, 60);
@@ -63,6 +77,7 @@ h1{font-family:var(--hand);font-weight:700;font-size:22px;line-height:1.4;margin
   var btn = document.getElementById('open');
   btn.textContent = t.open;
   if (!ok) {
+    showCard();
     btn.remove();
     var bad = document.createElement('p');
     bad.className = 'bad';
@@ -76,8 +91,13 @@ h1{font-family:var(--hand);font-weight:700;font-size:22px;line-height:1.4;margin
     ? 'intent://drive-join?' + query + '#Intent;scheme=daak;package=com.yuzuki.howausa;end'
     : 'daak://drive-join?' + query;
   btn.href = app;
-  // 有裝 App 的直接跳過去（被瀏覽器擋下的話，按鈕照樣可以按）
-  setTimeout(function () { location.href = app; }, 400);
+  // 不停留：一打開就跳進 App。App 打開後這頁會被切到背景；過了一下還在前面（沒裝 App、被內建瀏覽器擋下）才顯示整張卡，按鈕照樣可以按
+  location.href = app;
+  setTimeout(function () { if (!document.hidden) showCard(); }, 1600);
+  document.addEventListener('visibilitychange', function () {
+    // 從 App 回到這頁（例如加入完按返回）：顯示整張卡，不要一直轉圈
+    if (!document.hidden) showCard();
+  });
 })();
 </script>
 </body>
