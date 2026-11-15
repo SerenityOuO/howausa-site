@@ -7,34 +7,119 @@
     "description": "一隻羊毛氈兔兔，住在手機裡陪你記帳存錢。白天是午後手帳，晚上是下雨的床邊窗。沒有廣告、不收集資料。",
     "tagline": "一隻羊毛氈兔兔，住在手機裡陪你記帳存錢。",
     "heroAlt": "棉棉兔在窗邊的小房間",
-    "nav": ["首頁", "隱私權政策", "使用條款"],
-    "day": "白天", "night": "夜晚", "toDay": "切換成白天", "toNight": "切換成夜晚", "langLabel": "語言",
+    "nav": [
+      "首頁",
+      "隱私權政策",
+      "使用條款",
+      "Android 測試"
+    ],
+    "day": "白天",
+    "night": "夜晚",
+    "toDay": "切換成白天",
+    "toNight": "切換成夜晚",
+    "langLabel": "語言",
     "featTitle": "棉棉兔可以做什麼",
     "feats": [
-      ["點一下就記好", "點分類、打金額，一筆就記好，主頁馬上看到。"],
-      ["兔兔的小房間", "白天是午後手帳，晚上是下雨的床邊窗。"],
-      ["預算看得見", "總預算還剩多少一圈看懂，每一類超支會變紅。"],
-      ["存錢像集點", "存錢罐是一張集點卡，存一次蓋一個章。"],
-      ["兩個人一起記", "情侶、室友共用一本，每筆貼著是誰記的。"],
-      ["桌面小插件", "三款小插件，在桌面按一下就能記一筆。"],
-      ["出國用外幣記", "開一本旅行帳本，外幣自動換算。"],
-      ["每月回顧", "月初幫你整理上個月花在哪、存下多少。"]
+      [
+        "點一下就記好",
+        "點分類、打金額，一筆就記好，主頁馬上看到。"
+      ],
+      [
+        "兔兔的小房間",
+        "白天是午後手帳，晚上是下雨的床邊窗。"
+      ],
+      [
+        "預算看得見",
+        "總預算還剩多少一圈看懂，每一類超支會變紅。"
+      ],
+      [
+        "存錢像集點",
+        "存錢罐是一張集點卡，存一次蓋一個章。"
+      ],
+      [
+        "兩個人一起記",
+        "情侶、室友共用一本，每筆貼著是誰記的。"
+      ],
+      [
+        "桌面小插件",
+        "三款小插件，在桌面按一下就能記一筆。"
+      ],
+      [
+        "出國用外幣記",
+        "開一本旅行帳本，外幣自動換算。"
+      ],
+      [
+        "每月回顧",
+        "月初幫你整理上個月花在哪、存下多少。"
+      ]
     ],
     "ctaTest": "iPhone 公開測試",
     "ctaStore": "App Store 即將上架",
-    "note": "免費就能完整記帳。支援繁體中文、简体中文、English、日本語，目前只有 iPhone。",
+    "note": "免費就能完整記帳。支援繁體中文、简体中文、English、日本語。App Store、Google Play 即將上架。",
     "shotsTitle": "看看畫面",
     "shotsSub": "都是 App 裡的真畫面，往左滑看更多。",
-    "shots": ["主頁", "記一筆", "預算", "存錢罐", "共享帳本", "桌面小插件", "夜晚"],
+    "shots": [
+      "主頁",
+      "記一筆",
+      "預算",
+      "存錢罐",
+      "共享帳本",
+      "桌面小插件",
+      "夜晚"
+    ],
     "trustTitle": "帳只在你手上",
     "trust": [
-      ["沒有廣告", "打開就是記帳，不會跳出廣告。"],
-      ["不收集資料", "我們沒有伺服器，看不到你的帳。"],
-      ["你的 iCloud", "換手機資料也還在。"],
-      ["Face ID 上鎖", "別人拿到手機也打不開。"]
+      [
+        "沒有廣告",
+        "打開就是記帳，不會跳出廣告。"
+      ],
+      [
+        "不收集資料",
+        "我們沒有伺服器，看不到你的帳。"
+      ],
+      [
+        "你的 iCloud",
+        "換手機資料也還在。"
+      ],
+      [
+        "Face ID 上鎖",
+        "別人拿到手機也打不開。"
+      ]
     ],
     "threads": "脆",
-    "studio": "Yuzuki Studio｜獨立開發"
+    "studio": "Yuzuki Studio｜獨立開發",
+    "ctaAndroid": "Android 測試版",
+    "android": {
+      "title": "Android 測試版｜棉棉兔記帳",
+      "desc": "三個步驟，就能在 Android 手機裝棉棉兔記帳的測試版。",
+      "h": "Android 測試版",
+      "sub": "棉棉兔記帳的 Android 版正在封閉測試，跟著三個步驟就能裝。",
+      "steps": [
+        [
+          "加入測試群組",
+          "用手機上的 Google 帳號打開群組頁，按「加入群組」。",
+          "加入群組"
+        ],
+        [
+          "成為測試人員",
+          "打開測試頁，按「成為測試人員」。",
+          "成為測試人員"
+        ],
+        [
+          "從 Google Play 下載",
+          "同一頁按「在 Google Play 下載」，或按下面的按鈕。",
+          "打開 Google Play"
+        ]
+      ],
+      "tipsTitle": "小提醒",
+      "tips": [
+        "三個步驟都要用同一個 Google 帳號，就是手機 Play 商店登入的那個。",
+        "剛加入群組時，測試頁可能要等幾分鐘才會出現。",
+        "頁面一片空白時，請用 Chrome 打開，並確認右上角是正確的帳號。",
+        "測試版的 Google 雲端硬碟同步還在開放中，部分帳號暫時無法登入，記帳功能都能正常用。",
+        "有問題或建議，歡迎到脆 @yuzuki.tw 告訴我們。"
+      ]
+    }
   },
   "ja": {
     "name": "わたうさ家計簿",
@@ -43,34 +128,119 @@
     "description": "羊毛フェルトのうさぎがスマホの中で家計簿と貯金に付き添います。昼は午後の手帳、夜は雨の窓辺。広告なし、データ収集なし。",
     "tagline": "羊毛フェルトのうさぎが、スマホの中で家計簿と貯金に付き添います。",
     "heroAlt": "窓辺の小さな部屋にいるうさぎ",
-    "nav": ["ホーム", "プライバシーポリシー", "利用規約"],
-    "day": "昼", "night": "夜", "toDay": "昼に切り替え", "toNight": "夜に切り替え", "langLabel": "言語",
+    "nav": [
+      "ホーム",
+      "プライバシーポリシー",
+      "利用規約",
+      "Android テスト"
+    ],
+    "day": "昼",
+    "night": "夜",
+    "toDay": "昼に切り替え",
+    "toNight": "夜に切り替え",
+    "langLabel": "言語",
     "featTitle": "わたうさ家計簿でできること",
     "feats": [
-      ["タップで記録", "カテゴリを選んで金額を入れるだけ。ホームにすぐ表示されます。"],
-      ["うさぎの小部屋", "昼は午後の手帳、夜は雨の降る窓辺。"],
-      ["予算がひと目で", "残りの予算は円グラフで。使いすぎたカテゴリは赤くなります。"],
-      ["貯金はスタンプカード", "貯金箱はスタンプカード。貯めるたびにひとつ押します。"],
-      ["ふたりで記録", "カップルやルームメイトで1冊を共有。誰が記録したかもわかります。"],
-      ["ホーム画面ウィジェット", "3種類のウィジェット。ホーム画面からワンタップで記録。"],
-      ["旅行は外貨で", "旅行用の家計簿を作れば、外貨を自動で換算します。"],
-      ["月のふりかえり", "月初に先月の使いみちと貯金をまとめます。"]
+      [
+        "タップで記録",
+        "カテゴリを選んで金額を入れるだけ。ホームにすぐ表示されます。"
+      ],
+      [
+        "うさぎの小部屋",
+        "昼は午後の手帳、夜は雨の降る窓辺。"
+      ],
+      [
+        "予算がひと目で",
+        "残りの予算は円グラフで。使いすぎたカテゴリは赤くなります。"
+      ],
+      [
+        "貯金はスタンプカード",
+        "貯金箱はスタンプカード。貯めるたびにひとつ押します。"
+      ],
+      [
+        "ふたりで記録",
+        "カップルやルームメイトで1冊を共有。誰が記録したかもわかります。"
+      ],
+      [
+        "ホーム画面ウィジェット",
+        "3種類のウィジェット。ホーム画面からワンタップで記録。"
+      ],
+      [
+        "旅行は外貨で",
+        "旅行用の家計簿を作れば、外貨を自動で換算します。"
+      ],
+      [
+        "月のふりかえり",
+        "月初に先月の使いみちと貯金をまとめます。"
+      ]
     ],
     "ctaTest": "iPhone 公開テスト",
     "ctaStore": "App Store 近日公開",
-    "note": "家計簿の機能はすべて無料で使えます。日本語・English・繁體中文・简体中文に対応、現在は iPhone のみです。",
+    "note": "無料でしっかり家計簿。繁體中文・简体中文・English・日本語に対応。App Store・Google Play で近日公開。",
     "shotsTitle": "画面を見る",
     "shotsSub": "すべてアプリの実際の画面です。左にスワイプでもっと見られます。",
-    "shots": ["ホーム", "記録", "予算", "貯金箱", "共有家計簿", "ウィジェット", "夜"],
+    "shots": [
+      "ホーム",
+      "記録",
+      "予算",
+      "貯金箱",
+      "共有家計簿",
+      "ウィジェット",
+      "夜"
+    ],
     "trustTitle": "データはあなたの手元に",
     "trust": [
-      ["広告なし", "開けばすぐ記録。広告は出ません。"],
-      ["データ収集なし", "サーバーがないので、記録を見ることはできません。"],
-      ["あなたの iCloud", "機種変更してもデータはそのまま。"],
-      ["Face ID でロック", "スマホを貸しても中は見られません。"]
+      [
+        "広告なし",
+        "開けばすぐ記録。広告は出ません。"
+      ],
+      [
+        "データ収集なし",
+        "サーバーがないので、記録を見ることはできません。"
+      ],
+      [
+        "あなたの iCloud",
+        "機種変更してもデータはそのまま。"
+      ],
+      [
+        "Face ID でロック",
+        "スマホを貸しても中は見られません。"
+      ]
     ],
     "threads": "Threads",
-    "studio": "Yuzuki Studio｜個人開発"
+    "studio": "Yuzuki Studio｜個人開発",
+    "ctaAndroid": "Android テスト版",
+    "android": {
+      "title": "Android テスト版｜わたうさ家計簿",
+      "desc": "3 ステップで、Android スマホにわたうさ家計簿のテスト版を入れられます。",
+      "h": "Android テスト版",
+      "sub": "わたうさ家計簿の Android 版はクローズドテスト中です。3 ステップで入れられます。",
+      "steps": [
+        [
+          "テストグループに参加",
+          "スマホの Google アカウントでグループページを開き、「グループに参加」を押します。",
+          "グループに参加"
+        ],
+        [
+          "テスターになる",
+          "テストページを開き、「テスターになる」を押します。",
+          "テスターになる"
+        ],
+        [
+          "Google Play からダウンロード",
+          "同じページの「Google Play でダウンロード」か、下のボタンを押します。",
+          "Google Play を開く"
+        ]
+      ],
+      "tipsTitle": "ご注意",
+      "tips": [
+        "3 つのステップはすべて同じ Google アカウントで。スマホの Play ストアにログインしているアカウントです。",
+        "グループに参加した直後は、テストページが表示されるまで数分かかることがあります。",
+        "ページが真っ白なときは Chrome で開き、右上のアカウントを確認してください。",
+        "テスト版の Google ドライブ同期は順次公開中のため、一部のアカウントはまだログインできません。家計簿の機能はすべて使えます。",
+        "ご質問やご意見は Threads @yuzuki.tw までどうぞ。"
+      ]
+    }
   },
   "en": {
     "name": "Howausa: Bunny Budget",
@@ -79,34 +249,119 @@
     "description": "A little felt bunny named Cotton lives in your phone and keeps you company while you track your money. No ads, no data collection.",
     "tagline": "A little felt bunny named Cotton lives in your phone and helps you track and save.",
     "heroAlt": "Cotton the bunny in a cozy room by the window",
-    "nav": ["Home", "Privacy", "Terms"],
-    "day": "Day", "night": "Night", "toDay": "Switch to day", "toNight": "Switch to night", "langLabel": "Language",
+    "nav": [
+      "Home",
+      "Privacy",
+      "Terms",
+      "Android beta"
+    ],
+    "day": "Day",
+    "night": "Night",
+    "toDay": "Switch to day",
+    "toNight": "Switch to night",
+    "langLabel": "Language",
     "featTitle": "What Cotton can do",
     "feats": [
-      ["Log in a tap", "Pick a category, type the amount, done. It shows up on Home right away."],
-      ["Cotton's room", "A sunlit afternoon journal by day, a rainy window by night."],
-      ["Budgets you can see", "One ring shows what's left. Overspent categories turn red."],
-      ["Saving like a stamp card", "Every time you save, you get a stamp."],
-      ["Budget together", "Share a ledger with your partner or roommate and see who logged what."],
-      ["Home Screen widgets", "Three widgets. Tap to log right from your Home Screen."],
-      ["Travel in any currency", "Make a travel ledger and foreign currency converts automatically."],
-      ["Monthly recap", "At the start of each month, see where last month's money went."]
+      [
+        "Log in a tap",
+        "Pick a category, type the amount, done. It shows up on Home right away."
+      ],
+      [
+        "Cotton's room",
+        "A sunlit afternoon journal by day, a rainy window by night."
+      ],
+      [
+        "Budgets you can see",
+        "One ring shows what's left. Overspent categories turn red."
+      ],
+      [
+        "Saving like a stamp card",
+        "Every time you save, you get a stamp."
+      ],
+      [
+        "Budget together",
+        "Share a ledger with your partner or roommate and see who logged what."
+      ],
+      [
+        "Home Screen widgets",
+        "Three widgets. Tap to log right from your Home Screen."
+      ],
+      [
+        "Travel in any currency",
+        "Make a travel ledger and foreign currency converts automatically."
+      ],
+      [
+        "Monthly recap",
+        "At the start of each month, see where last month's money went."
+      ]
     ],
     "ctaTest": "Join the iPhone beta",
     "ctaStore": "App Store coming soon",
-    "note": "Full budgeting is free. Available in English, 日本語, 繁體中文 and 简体中文. iPhone only for now.",
+    "note": "Full expense tracking for free. Available in 繁體中文, 简体中文, English and 日本語. Coming soon to the App Store and Google Play.",
     "shotsTitle": "Take a look",
     "shotsSub": "Real screens from the app. Swipe left for more.",
-    "shots": ["Home", "New entry", "Budget", "Savings", "Shared ledger", "Widgets", "Night"],
+    "shots": [
+      "Home",
+      "New entry",
+      "Budget",
+      "Savings",
+      "Shared ledger",
+      "Widgets",
+      "Night"
+    ],
     "trustTitle": "Your money stays yours",
     "trust": [
-      ["No ads", "Open it and log. No ads, ever."],
-      ["No data collection", "We have no servers and can't see your records."],
-      ["Your own iCloud", "Switch phones and everything comes with you."],
-      ["Face ID lock", "Hand someone your phone without worry."]
+      [
+        "No ads",
+        "Open it and log. No ads, ever."
+      ],
+      [
+        "No data collection",
+        "We have no servers and can't see your records."
+      ],
+      [
+        "Your own iCloud",
+        "Switch phones and everything comes with you."
+      ],
+      [
+        "Face ID lock",
+        "Hand someone your phone without worry."
+      ]
     ],
     "threads": "Threads",
-    "studio": "Yuzuki Studio · indie developer"
+    "studio": "Yuzuki Studio · indie developer",
+    "ctaAndroid": "Android beta",
+    "android": {
+      "title": "Android beta | Howausa",
+      "desc": "Install the Howausa beta on your Android phone in three steps.",
+      "h": "Android beta",
+      "sub": "Howausa for Android is in closed testing. Three steps and you're in.",
+      "steps": [
+        [
+          "Join the tester group",
+          "Open the group page with the Google account on your phone and tap “Join group”.",
+          "Join group"
+        ],
+        [
+          "Become a tester",
+          "Open the testing page and tap “Become a tester”.",
+          "Become a tester"
+        ],
+        [
+          "Download from Google Play",
+          "On the same page tap “Download it on Google Play”, or use the button below.",
+          "Open Google Play"
+        ]
+      ],
+      "tipsTitle": "Good to know",
+      "tips": [
+        "Use the same Google account for all three steps — the one signed in to the Play Store on your phone.",
+        "Right after joining the group, the testing page may take a few minutes to appear.",
+        "If a page shows up blank, open it in Chrome and check the account in the top-right corner.",
+        "Google Drive sync in the beta is still rolling out, so some accounts can't sign in yet. Everything else works.",
+        "Questions or ideas? Tell us on Threads @yuzuki.tw."
+      ]
+    }
   },
   "zh-Hans": {
     "name": "棉棉兔记账",
@@ -115,33 +370,118 @@
     "description": "一只羊毛毡兔兔，住在手机里陪你记账存钱。白天是午后手账，晚上是下雨的床边窗。没有广告、不收集数据。",
     "tagline": "一只羊毛毡兔兔，住在手机里陪你记账存钱。",
     "heroAlt": "棉棉兔在窗边的小房间",
-    "nav": ["首页", "隐私政策", "使用条款"],
-    "day": "白天", "night": "夜晚", "toDay": "切换成白天", "toNight": "切换成夜晚", "langLabel": "语言",
+    "nav": [
+      "首页",
+      "隐私政策",
+      "使用条款",
+      "Android 测试"
+    ],
+    "day": "白天",
+    "night": "夜晚",
+    "toDay": "切换成白天",
+    "toNight": "切换成夜晚",
+    "langLabel": "语言",
     "featTitle": "棉棉兔可以做什么",
     "feats": [
-      ["点一下就记好", "点分类、输金额，一笔就记好，首页马上看到。"],
-      ["兔兔的小房间", "白天是午后手账，晚上是下雨的床边窗。"],
-      ["预算看得见", "总预算还剩多少一圈看懂，每一类超支会变红。"],
-      ["存钱像集点", "存钱罐是一张集点卡，存一次盖一个章。"],
-      ["两个人一起记", "情侣、室友共用一本，每笔都标着是谁记的。"],
-      ["桌面小组件", "三款小组件，在桌面点一下就能记一笔。"],
-      ["出国用外币记", "开一本旅行账本，外币自动换算。"],
-      ["每月回顾", "月初帮你整理上个月花在哪、存下多少。"]
+      [
+        "点一下就记好",
+        "点分类、输金额，一笔就记好，首页马上看到。"
+      ],
+      [
+        "兔兔的小房间",
+        "白天是午后手账，晚上是下雨的床边窗。"
+      ],
+      [
+        "预算看得见",
+        "总预算还剩多少一圈看懂，每一类超支会变红。"
+      ],
+      [
+        "存钱像集点",
+        "存钱罐是一张集点卡，存一次盖一个章。"
+      ],
+      [
+        "两个人一起记",
+        "情侣、室友共用一本，每笔都标着是谁记的。"
+      ],
+      [
+        "桌面小组件",
+        "三款小组件，在桌面点一下就能记一笔。"
+      ],
+      [
+        "出国用外币记",
+        "开一本旅行账本，外币自动换算。"
+      ],
+      [
+        "每月回顾",
+        "月初帮你整理上个月花在哪、存下多少。"
+      ]
     ],
     "ctaTest": "iPhone 公开测试",
     "ctaStore": "App Store 即将上架",
-    "note": "免费就能完整记账。支持简体中文、繁體中文、English、日本語，目前只有 iPhone。",
+    "note": "免费就能完整记账。支持繁體中文、简体中文、English、日本語。App Store、Google Play 即将上架。",
     "shotsTitle": "看看界面",
     "shotsSub": "都是 App 里的真实界面，往左滑看更多。",
-    "shots": ["首页", "记一笔", "预算", "存钱罐", "共享账本", "桌面小组件", "夜晚"],
+    "shots": [
+      "首页",
+      "记一笔",
+      "预算",
+      "存钱罐",
+      "共享账本",
+      "桌面小组件",
+      "夜晚"
+    ],
     "trustTitle": "账只在你手上",
     "trust": [
-      ["没有广告", "打开就是记账，不会弹出广告。"],
-      ["不收集数据", "我们没有服务器，看不到你的账。"],
-      ["你的 iCloud", "换手机数据也还在。"],
-      ["Face ID 上锁", "别人拿到手机也打不开。"]
+      [
+        "没有广告",
+        "打开就是记账，不会弹出广告。"
+      ],
+      [
+        "不收集数据",
+        "我们没有服务器，看不到你的账。"
+      ],
+      [
+        "你的 iCloud",
+        "换手机数据也还在。"
+      ],
+      [
+        "Face ID 上锁",
+        "别人拿到手机也打不开。"
+      ]
     ],
     "threads": "Threads",
-    "studio": "Yuzuki Studio｜独立开发"
+    "studio": "Yuzuki Studio｜独立开发",
+    "ctaAndroid": "Android 测试版",
+    "android": {
+      "title": "Android 测试版｜棉棉兔记账",
+      "desc": "三个步骤，就能在 Android 手机安装棉棉兔记账的测试版。",
+      "h": "Android 测试版",
+      "sub": "棉棉兔记账的 Android 版正在封闭测试，跟着三个步骤就能安装。",
+      "steps": [
+        [
+          "加入测试群组",
+          "用手机上的 Google 账号打开群组页，点「加入群组」。",
+          "加入群组"
+        ],
+        [
+          "成为测试人员",
+          "打开测试页，点「成为测试人员」。",
+          "成为测试人员"
+        ],
+        [
+          "从 Google Play 下载",
+          "同一页点「在 Google Play 下载」，或点下面的按钮。",
+          "打开 Google Play"
+        ]
+      ],
+      "tipsTitle": "小提醒",
+      "tips": [
+        "三个步骤都要用同一个 Google 账号，就是手机 Play 商店登录的那个。",
+        "刚加入群组时，测试页可能要等几分钟才会出现。",
+        "页面一片空白时，请用 Chrome 打开，并确认右上角是正确的账号。",
+        "测试版的 Google 云端硬盘同步还在开放中，部分账号暂时无法登录，记账功能都能正常使用。",
+        "有问题或建议，欢迎到 Threads @yuzuki.tw 告诉我们。"
+      ]
+    }
   }
 }

@@ -20,6 +20,10 @@ SRC = APP / "上架準備"
 SITE = "https://serenityouo.github.io/howausa-site"
 TESTFLIGHT = "https://testflight.apple.com/join/cSRpbd5j"
 THREADS = "https://www.threads.com/@yuzuki.tw"
+# Android 封閉測試（2026-11-15）：先加入 Google 群組 → 成為測試人員 → Play 下載
+GROUP = "https://groups.google.com/g/howausa-testers"
+PLAY_TEST = "https://play.google.com/apps/testing/com.yuzuki.howausa"
+PLAY_STORE = "https://play.google.com/store/apps/details?id=com.yuzuki.howausa"
 
 LANGS = [  # (資料夾, md 段落標題, html lang, 切換列顯示)
     ("zh-Hant", "繁體中文", "zh-Hant", "繁中"),
@@ -150,6 +154,14 @@ td:first-child{white-space:nowrap;font-weight:600}
 footer{text-align:center;font-size:12.5px;color:var(--mute);display:grid;gap:6px}
 footer nav{display:flex;flex-wrap:wrap;justify-content:center;gap:4px 14px}
 footer a{text-underline-offset:3px}
+/* Android 測試步驟 */
+.steps{list-style:none;margin:0;padding:0;display:grid;gap:16px}
+.step{display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:start}
+.num{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:var(--card);border:var(--bw) solid var(--line);font:700 16px var(--hand)}
+.step h3{font-size:16.5px;line-height:1.4}
+.step p{margin:2px 0 10px;font-size:13.5px;color:var(--mute)}
+.step .btn{display:inline-flex;min-height:42px;padding:6px 20px;font-size:14.5px}
+.tips{margin:0;padding-left:1.2em;display:grid;gap:6px;font-size:13.5px}
 @media (max-width:380px){.grid{grid-template-columns:1fr}.cta{grid-template-columns:1fr}.brand b{font-size:17px}.theme span{display:none}.theme{padding:0 9px}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 """
@@ -259,7 +271,7 @@ def shell(lang, html_lang, page_key, title, desc, body):
     file = "index.html" if page_key == "index" else f"{page_key}.html"
     tabs = "".join(
         f'<a class="{"on" if key == page_key else ""}" href="{"index" if key == "index" else key}.html"{" aria-current=\"page\"" if key == page_key else ""}>{html.escape(T["nav"][n])}</a>'
-        for n, key in enumerate(["index", "privacy", "terms"])
+        for n, key in [(0, "index"), (3, "android"), (1, "privacy"), (2, "terms")]
     )
     opts = "".join(
         f'<option value="{code}"{" selected" if code == lang else ""}>{short}</option>' for code, _, _, short in LANGS
@@ -327,10 +339,24 @@ def landing(lang) -> str:
     return f"""{SVG}
 <section class="card hero"><div class="pic" role="img" aria-label="{e(T["heroAlt"])}"><div class="txt"><h1>{e(T["name"])}</h1><p>{e(T["tagline"])}</p></div></div></section>
 <section class="card"><h2>{e(T["featTitle"])}</h2><div class="grid">{feats}</div>
-<div class="cta"><a class="btn" href="{TESTFLIGHT}" target="_blank" rel="noopener">{e(T["ctaTest"])}</a><span class="btn off">{e(T["ctaStore"])}</span></div>
+<div class="cta"><a class="btn" href="{TESTFLIGHT}" target="_blank" rel="noopener">{e(T["ctaTest"])}</a><a class="btn" href="android.html">{e(T["ctaAndroid"])}</a></div>
 <p class="note">{e(T["note"])}</p></section>
 <section class="card" id="shots"><h2>{e(T["shotsTitle"])}</h2><p class="sub">{e(T["shotsSub"])}</p><div class="strip">{shots}</div></section>
 <section class="card peach"><h2>{e(T["trustTitle"])}</h2><div class="trust">{trust}</div></section>"""
+
+
+def android(lang) -> str:
+    A = TEXT[lang]["android"]
+    e = html.escape
+    links = [GROUP, PLAY_TEST, PLAY_STORE]
+    steps = "".join(
+        f'<li class="step"><span class="num" aria-hidden="true">{i + 1}</span><div><h3>{e(t)}</h3><p>{e(p)}</p>'
+        f'<a class="btn" href="{url}" target="_blank" rel="noopener">{e(b)}</a></div></li>'
+        for i, ((t, p, b), url) in enumerate(zip(A["steps"], links))
+    )
+    tips = "".join(f"<li>{e(t)}</li>" for t in A["tips"])
+    return f"""<section class="card honey"><h2>{e(A["h"])}</h2><p class="sub">{e(A["sub"])}</p><ol class="steps">{steps}</ol></section>
+<section class="card"><h2>{e(A["tipsTitle"])}</h2><ul class="tips">{tips}</ul></section>"""
 
 
 def main():
@@ -339,6 +365,11 @@ def main():
         out = ROOT / code / "index.html"
         out.parent.mkdir(exist_ok=True)
         out.write_text(shell(code, hl, "index", T["title"], T["description"], landing(code)), encoding="utf-8")
+        print("寫入", out.relative_to(ROOT))
+    for code, label, hl, _ in LANGS:
+        A = TEXT[code]["android"]
+        out = ROOT / code / "android.html"
+        out.write_text(shell(code, hl, "android", A["title"], A["desc"], android(code)), encoding="utf-8")
         print("寫入", out.relative_to(ROOT))
     for key, filename in PAGES.items():
         parts = sections((SRC / filename).read_text(encoding="utf-8"))
