@@ -364,8 +364,11 @@ def android(lang) -> str:
     inapp = (f'<section class="card peach" id="inapp" hidden><h2>{e(A["inappTitle"])}</h2><p class="sub">{e(A["inappBody"])}</p>'
              f'<a class="btn" href="{chrome}">{e(A["inappBtn"])}</a><p class="note">{e(A["inappHint"])}</p></section>'
              '<script>(function(){var u=navigator.userAgent||"";if(/Android/i.test(u)&&/Barcelona|Instagram|FBAN|FBAV|FB_IAB|Line\\/|; wv\\)/i.test(u)){document.getElementById("inapp").hidden=false}})()</script>')
+    # Android 上第 3 步改開完整的 Play 商店 App（market://）；網頁連結會跳出常常空白的 Play 小視窗
+    market = ('<script>(function(){if(/Android/i.test(navigator.userAgent||"")){var a=document.querySelector(".steps li:last-child a");'
+              'if(a){a.href="market://details?id=com.yuzuki.howausa";a.removeAttribute("target")}}})()</script>')
     return inapp + f"""<section class="card honey"><h2>{e(A["h"])}</h2><p class="sub">{e(A["sub"])}</p><ol class="steps">{steps}</ol></section>
-<section class="card"><h2>{e(A["tipsTitle"])}</h2><ul class="tips">{tips}</ul></section>"""
+<section class="card"><h2>{e(A["tipsTitle"])}</h2><ul class="tips">{tips}</ul></section>{market}"""
 
 
 def main():
