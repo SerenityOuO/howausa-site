@@ -108,6 +108,10 @@ html.dark .hero .pic::before{opacity:1}
 .hero h1{font-size:clamp(24px,7vw,30px);line-height:1.2}
 .hero p{margin:4px 0 0;font-size:14px;max-width:24em}
 
+/* 大圖下的下載按鈕 */
+.hero .get{padding:14px 16px 16px}
+.hero .get .cta{margin-top:0}
+.hero .get .note{margin-top:10px;text-wrap:pretty}
 /* 功能格 */
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px}
 .feat{display:flex;gap:10px;align-items:flex-start;padding:11px 12px;border-radius:14px;background:var(--card);border:var(--bw) solid var(--line);box-shadow:2px 2px 0 var(--line);min-width:0}
@@ -271,7 +275,7 @@ def shell(lang, html_lang, page_key, title, desc, body):
     file = "index.html" if page_key == "index" else f"{page_key}.html"
     tabs = "".join(
         f'<a class="{"on" if key == page_key else ""}" href="{"index" if key == "index" else key}.html"{" aria-current=\"page\"" if key == page_key else ""}>{html.escape(T["nav"][n])}</a>'
-        for n, key in [(0, "index"), (3, "android"), (1, "privacy"), (2, "terms")]
+        for n, key in enumerate(["index", "privacy", "terms"])
     )
     opts = "".join(
         f'<option value="{code}"{" selected" if code == lang else ""}>{short}</option>' for code, _, _, short in LANGS
@@ -337,10 +341,10 @@ def landing(lang) -> str:
     )
     trust = "".join(f"<div><b>{e(t)}</b>{e(d)}</div>" for t, d in T["trust"])
     return f"""{SVG}
-<section class="card hero"><div class="pic" role="img" aria-label="{e(T["heroAlt"])}"><div class="txt"><h1>{e(T["name"])}</h1><p>{e(T["tagline"])}</p></div></div></section>
-<section class="card"><h2>{e(T["featTitle"])}</h2><div class="grid">{feats}</div>
-<div class="cta"><a class="btn" href="{TESTFLIGHT}" target="_blank" rel="noopener">{e(T["ctaTest"])}</a><a class="btn" href="android.html">{e(T["ctaAndroid"])}</a></div>
-<p class="note">{e(T["note"])}</p></section>
+<section class="card hero"><div class="pic" role="img" aria-label="{e(T["heroAlt"])}"><div class="txt"><h1>{e(T["name"])}</h1><p>{e(T["tagline"])}</p></div></div>
+<div class="get"><div class="cta"><a class="btn" href="{TESTFLIGHT}" target="_blank" rel="noopener">{e(T["ctaTest"])}</a><a class="btn" href="android.html">{e(T["ctaAndroid"])}</a></div>
+<p class="note">{e(T["note"])}</p></div></section>
+<section class="card"><h2>{e(T["featTitle"])}</h2><div class="grid">{feats}</div></section>
 <section class="card" id="shots"><h2>{e(T["shotsTitle"])}</h2><p class="sub">{e(T["shotsSub"])}</p><div class="strip">{shots}</div></section>
 <section class="card peach"><h2>{e(T["trustTitle"])}</h2><div class="trust">{trust}</div></section>"""
 
