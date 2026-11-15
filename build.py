@@ -359,7 +359,12 @@ def android(lang) -> str:
         for i, ((t, p, b), url) in enumerate(zip(A["steps"], links))
     )
     tips = "".join(f"<li>{e(t)}</li>" for t in A["tips"])
-    return f"""<section class="card honey"><h2>{e(A["h"])}</h2><p class="sub">{e(A["sub"])}</p><ol class="steps">{steps}</ol></section>
+    # 從脆／IG／LINE 等 App 內建瀏覽器打開時（沒登入 Google，進不了群組）：最上面提示改用 Chrome 打開
+    chrome = f"intent://serenityouo.github.io/howausa-site/{lang}/android.html#Intent;scheme=https;package=com.android.chrome;end"
+    inapp = (f'<section class="card peach" id="inapp" hidden><h2>{e(A["inappTitle"])}</h2><p class="sub">{e(A["inappBody"])}</p>'
+             f'<a class="btn" href="{chrome}">{e(A["inappBtn"])}</a><p class="note">{e(A["inappHint"])}</p></section>'
+             '<script>(function(){var u=navigator.userAgent||"";if(/Android/i.test(u)&&/Barcelona|Instagram|FBAN|FBAV|FB_IAB|Line\\/|; wv\\)/i.test(u)){document.getElementById("inapp").hidden=false}})()</script>')
+    return inapp + f"""<section class="card honey"><h2>{e(A["h"])}</h2><p class="sub">{e(A["sub"])}</p><ol class="steps">{steps}</ol></section>
 <section class="card"><h2>{e(A["tipsTitle"])}</h2><ul class="tips">{tips}</ul></section>"""
 
 

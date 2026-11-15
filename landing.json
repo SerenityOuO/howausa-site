@@ -118,7 +118,11 @@
         "頁面一片空白時，請用 Chrome 打開，並確認右上角是正確的帳號。",
         "測試版的 Google 雲端硬碟同步還在開放中，部分帳號暫時無法登入，記帳功能都能正常用。",
         "有問題或建議，歡迎到脆 @yuzuki.tw 告訴我們。"
-      ]
+      ],
+      "inappTitle": "請先用 Chrome 打開這一頁",
+      "inappBody": "你現在在脆、IG 或 LINE 的內建瀏覽器裡，這裡沒有登入 Google，會加入不了群組。",
+      "inappBtn": "用 Chrome 打開",
+      "inappHint": "按了沒反應的話，按右上角「⋯」，選「在瀏覽器中開啟」。"
     }
   },
   "ja": {
@@ -239,7 +243,11 @@
         "ページが真っ白なときは Chrome で開き、右上のアカウントを確認してください。",
         "テスト版の Google ドライブ同期は順次公開中のため、一部のアカウントはまだログインできません。家計簿の機能はすべて使えます。",
         "ご質問やご意見は Threads @yuzuki.tw までどうぞ。"
-      ]
+      ],
+      "inappTitle": "まずこのページを Chrome で開いてください",
+      "inappBody": "いまは Threads・Instagram・LINE のアプリ内ブラウザです。Google にログインしていないので、グループに参加できません。",
+      "inappBtn": "Chrome で開く",
+      "inappHint": "反応しないときは、右上の「⋯」から「ブラウザで開く」を選んでください。"
     }
   },
   "en": {
@@ -360,7 +368,11 @@
         "If a page shows up blank, open it in Chrome and check the account in the top-right corner.",
         "Google Drive sync in the beta is still rolling out, so some accounts can't sign in yet. Everything else works.",
         "Questions or ideas? Tell us on Threads @yuzuki.tw."
-      ]
+      ],
+      "inappTitle": "Open this page in Chrome first",
+      "inappBody": "You are in the in-app browser of Threads, Instagram or LINE. It isn’t signed in to Google, so you can’t join the group from here.",
+      "inappBtn": "Open in Chrome",
+      "inappHint": "If nothing happens, tap “⋯” in the top-right corner and choose “Open in browser”."
     }
   },
   "zh-Hans": {
@@ -481,7 +493,11 @@
         "页面一片空白时，请用 Chrome 打开，并确认右上角是正确的账号。",
         "测试版的 Google 云端硬盘同步还在开放中，部分账号暂时无法登录，记账功能都能正常使用。",
         "有问题或建议，欢迎到 Threads @yuzuki.tw 告诉我们。"
-      ]
+      ],
+      "inappTitle": "请先用 Chrome 打开这一页",
+      "inappBody": "你现在在 Threads、IG 或 LINE 的内置浏览器里，这里没有登录 Google，会加入不了群组。",
+      "inappBtn": "用 Chrome 打开",
+      "inappHint": "点了没反应的话，点右上角「⋯」，选「在浏览器中打开」。"
     }
   }
 }
