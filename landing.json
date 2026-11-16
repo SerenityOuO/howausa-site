@@ -104,13 +104,13 @@
           "成為測試人員",
           "打開測試頁，按「成為測試人員」。",
           "成為測試人員",
-          "剛加入群組時，Google 要一點時間處理。沒看到「成為測試人員」，請等 5～15 分鐘再重新整理。"
+          "沒看到按鈕？Google 還在處理，等 5～15 分鐘再重新整理。"
         ],
         [
           "從 Google Play 下載",
           "同一頁按「在 Google Play 下載」，或按下面的按鈕。",
           "打開 Google Play",
-          "成為測試人員後，Google 也要處理一下。Play 沒出現「安裝」，請等 5～15 分鐘再打開。"
+          "沒出現「安裝」？等 5～15 分鐘再打開。"
         ]
       ],
       "tipsTitle": "小提醒",
@@ -230,13 +230,13 @@
           "テスターになる",
           "テストページを開き、「テスターになる」を押します。",
           "テスターになる",
-          "グループ参加直後は Google の処理に少し時間がかかります。「テスターになる」が見えないときは、5〜15 分待って再読み込みしてください。"
+          "ボタンが見えないときは、Google の処理中です。5〜15 分待って再読み込みしてください。"
         ],
         [
           "Google Play からダウンロード",
           "同じページの「Google Play でダウンロード」か、下のボタンを押します。",
           "Google Play を開く",
-          "テスター登録後も Google の処理に少し時間がかかります。Play に「インストール」が出ないときは、5〜15 分待って開き直してください。"
+          "「インストール」が出ないときは、5〜15 分待って開き直してください。"
         ]
       ],
       "tipsTitle": "ご注意",
@@ -356,13 +356,13 @@
           "Become a tester",
           "Open the testing page and tap “Become a tester”.",
           "Become a tester",
-          "Google needs a moment after you join the group. If “Become a tester” isn’t there, wait 5–15 minutes and refresh."
+          "No button yet? Google is still processing. Wait 5–15 minutes and refresh."
         ],
         [
           "Download from Google Play",
           "On the same page tap “Download it on Google Play”, or use the button below.",
           "Open Google Play",
-          "Google needs a moment after you become a tester. If Play doesn’t show “Install”, wait 5–15 minutes and open it again."
+          "No “Install” yet? Wait 5–15 minutes and open it again."
         ]
       ],
       "tipsTitle": "Good to know",
@@ -482,13 +482,13 @@
           "成为测试人员",
           "打开测试页，点「成为测试人员」。",
           "成为测试人员",
-          "刚加入群组时，Google 要一点时间处理。没看到「成为测试人员」，请等 5～15 分钟再刷新。"
+          "没看到按钮？Google 还在处理，等 5～15 分钟再刷新。"
         ],
         [
           "从 Google Play 下载",
           "同一页点「在 Google Play 下载」，或点下面的按钮。",
           "打开 Google Play",
-          "成为测试人员后，Google 也要处理一下。Play 没出现「安装」，请等 5～15 分钟再打开。"
+          "没出现「安装」？等 5～15 分钟再打开。"
         ]
       ],
       "tipsTitle": "小提醒",

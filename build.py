@@ -165,8 +165,8 @@ footer a{text-underline-offset:3px}
 .step h3{font-size:16.5px;line-height:1.4}
 .step p{margin:2px 0 10px;font-size:13.5px;color:var(--mute)}
 .step .btn{display:inline-flex;min-height:42px;padding:6px 20px;font-size:14.5px}
-.wait{display:flex;gap:8px;align-items:flex-start;margin:10px 0 0;padding:8px 12px;border-radius:12px;background:var(--chip);color:var(--ink);font-size:13.5px;line-height:1.6}
-.wait svg{flex:none;width:16px;height:16px;margin-top:3px}
+.step .wait{display:flex;gap:6px;align-items:flex-start;margin:-4px 0 12px;font-size:12.5px;line-height:1.6;color:var(--mute)}
+.wait svg{flex:none;width:13px;height:13px;margin-top:4px}
 .tips{margin:0;padding-left:1.2em;display:grid;gap:6px;font-size:13.5px}
 @media (max-width:380px){.grid{grid-template-columns:1fr}.cta{grid-template-columns:1fr}.brand b{font-size:17px}.theme span{display:none}.theme{padding:0 9px}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
@@ -355,13 +355,13 @@ def android(lang) -> str:
     A = TEXT[lang]["android"]
     e = html.escape
     links = [GROUP, PLAY_TEST, PLAY_STORE]
-    # 第 4 欄（選填）：要等 Google 處理的步驟，按鈕下面加一個「等 5～15 分鐘」的小提示（使用者 2026-11-16）
+    # 第 4 欄（選填）：要等 Google 處理的步驟，說明下面加一行淡色小字「等 5～15 分鐘」（11-16 選 B）（使用者 2026-11-16）
     clock = ('<svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.6"/>'
              '<path d="M8 4.6V8l2.3 1.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>')
     wait = lambda st: f'<p class="wait">{clock}<span>{e(st[3])}</span></p>' if len(st) > 3 else ""
     steps = "".join(
-        f'<li class="step"><span class="num" aria-hidden="true">{i + 1}</span><div><h3>{e(t)}</h3><p>{e(p)}</p>'
-        f'<a class="btn" href="{url}" target="_blank" rel="noopener">{e(st[2])}</a>{wait(st)}</div></li>'
+        f'<li class="step"><span class="num" aria-hidden="true">{i + 1}</span><div><h3>{e(t)}</h3><p>{e(p)}</p>{wait(st)}'
+        f'<a class="btn" href="{url}" target="_blank" rel="noopener">{e(st[2])}</a></div></li>'
         for i, (st, url) in enumerate(zip(A["steps"], links))
         for t, p in [st[:2]]
     )
