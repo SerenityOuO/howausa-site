@@ -94,6 +94,7 @@
       "desc": "三個步驟，就能在 Android 手機裝棉棉兔記帳的測試版。",
       "h": "Android 測試版",
       "sub": "棉棉兔記帳的 Android 版正在封閉測試，跟著三個步驟就能裝。",
+      "guide": "看教學",
       "steps": [
         [
           "加入測試群組",
@@ -220,6 +221,7 @@
       "desc": "3 ステップで、Android スマホにわたうさ家計簿のテスト版を入れられます。",
       "h": "Android テスト版",
       "sub": "わたうさ家計簿の Android 版はクローズドテスト中です。3 ステップで入れられます。",
+      "guide": "やり方を見る",
       "steps": [
         [
           "テストグループに参加",
@@ -346,6 +348,7 @@
       "desc": "Install the Howausa beta on your Android phone in three steps.",
       "h": "Android beta",
       "sub": "Howausa for Android is in closed testing. Three steps and you're in.",
+      "guide": "Show me how",
       "steps": [
         [
           "Join the tester group",
@@ -472,6 +475,7 @@
       "desc": "三个步骤，就能在 Android 手机安装棉棉兔记账的测试版。",
       "h": "Android 测试版",
       "sub": "棉棉兔记账的 Android 版正在封闭测试，跟着三个步骤就能安装。",
+      "guide": "看教程",
       "steps": [
         [
           "加入测试群组",

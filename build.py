@@ -168,6 +168,9 @@ footer a{text-underline-offset:3px}
 .step .btn{display:inline-flex;min-height:42px;padding:6px 20px;font-size:14.5px}
 .step .wait{display:flex;gap:6px;align-items:flex-start;margin:-4px 0 12px;font-size:12.5px;line-height:1.6;color:var(--mute)}
 .wait svg{flex:none;width:13px;height:13px;margin-top:4px}
+.guide{margin-top:10px}.guide summary{cursor:pointer;width:max-content;font-size:13.5px;color:var(--mute);text-decoration:underline;text-underline-offset:3px}
+.guide .pics{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:10px}
+.guide img{width:100%;height:auto;border-radius:12px;border:var(--bw) solid var(--line)}
 .tips{margin:0;padding-left:1.2em;display:grid;gap:6px;font-size:13.5px}
 @media (max-width:380px){.grid{grid-template-columns:1fr}.cta{grid-template-columns:1fr}.brand b{font-size:17px}.theme span{display:none}.theme{padding:0 9px}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
@@ -360,9 +363,14 @@ def android(lang) -> str:
     clock = ('<svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.6"/>'
              '<path d="M8 4.6V8l2.3 1.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>')
     wait = lambda st: f'<p class="wait">{clock}<span>{e(st[3])}</span></p>' if len(st) > 3 else ""
+    # 第 1、2 步按鈕下方「看教學」，點開才顯示標註好的截圖（個資已換成兔子）（使用者 2026-11-16）
+    pics = {0: ["guide-1a", "guide-1b"], 1: ["guide-2"]}
+    guide = lambda i, t: (f'<details class="guide"><summary>{e(A["guide"])}</summary><div class="pics">'
+                          + "".join(f'<img src="../img/{n}.jpg" alt="{e(t)}" loading="lazy" width="600" height="1304">' for n in pics[i])
+                          + '</div></details>') if i in pics else ""
     steps = "".join(
         f'<li class="step"><span class="num" aria-hidden="true">{i + 1}</span><div><h3>{e(t)}</h3><p>{e(p)}</p>{wait(st)}'
-        f'<a class="btn" href="{url}" target="_blank" rel="noopener">{e(st[2])}</a></div></li>'
+        f'<a class="btn" href="{url}" target="_blank" rel="noopener">{e(st[2])}</a>{guide(i, t)}</div></li>'
         for i, (st, url) in enumerate(zip(A["steps"], links))
         for t, p in [st[:2]]
     )
