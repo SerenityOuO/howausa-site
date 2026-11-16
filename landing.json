@@ -103,18 +103,19 @@
         [
           "成為測試人員",
           "打開測試頁，按「成為測試人員」。",
-          "成為測試人員"
+          "成為測試人員",
+          "剛加入群組時，Google 要一點時間處理。沒看到「成為測試人員」，請等 5～15 分鐘再重新整理。"
         ],
         [
           "從 Google Play 下載",
           "同一頁按「在 Google Play 下載」，或按下面的按鈕。",
-          "打開 Google Play"
+          "打開 Google Play",
+          "成為測試人員後，Google 也要處理一下。Play 沒出現「安裝」，請等 5～15 分鐘再打開。"
         ]
       ],
       "tipsTitle": "小提醒",
       "tips": [
         "三個步驟都要用同一個 Google 帳號，就是手機 Play 商店登入的那個。",
-        "剛加入群組時，測試頁可能要等幾分鐘才會出現。",
         "頁面一片空白時，請用 Chrome 打開，並確認右上角是正確的帳號。",
         "測試版的 Google 雲端硬碟同步還在開放中，部分帳號暫時無法登入，記帳功能都能正常用。",
         "有問題或建議，歡迎到脆 @yuzuki.tw 告訴我們。"
@@ -228,18 +229,19 @@
         [
           "テスターになる",
           "テストページを開き、「テスターになる」を押します。",
-          "テスターになる"
+          "テスターになる",
+          "グループ参加直後は Google の処理に少し時間がかかります。「テスターになる」が見えないときは、5〜15 分待って再読み込みしてください。"
         ],
         [
           "Google Play からダウンロード",
           "同じページの「Google Play でダウンロード」か、下のボタンを押します。",
-          "Google Play を開く"
+          "Google Play を開く",
+          "テスター登録後も Google の処理に少し時間がかかります。Play に「インストール」が出ないときは、5〜15 分待って開き直してください。"
         ]
       ],
       "tipsTitle": "ご注意",
       "tips": [
         "3 つのステップはすべて同じ Google アカウントで。スマホの Play ストアにログインしているアカウントです。",
-        "グループに参加した直後は、テストページが表示されるまで数分かかることがあります。",
         "ページが真っ白なときは Chrome で開き、右上のアカウントを確認してください。",
         "テスト版の Google ドライブ同期は順次公開中のため、一部のアカウントはまだログインできません。家計簿の機能はすべて使えます。",
         "ご質問やご意見は Threads @yuzuki.tw までどうぞ。"
@@ -353,18 +355,19 @@
         [
           "Become a tester",
           "Open the testing page and tap “Become a tester”.",
-          "Become a tester"
+          "Become a tester",
+          "Google needs a moment after you join the group. If “Become a tester” isn’t there, wait 5–15 minutes and refresh."
         ],
         [
           "Download from Google Play",
           "On the same page tap “Download it on Google Play”, or use the button below.",
-          "Open Google Play"
+          "Open Google Play",
+          "Google needs a moment after you become a tester. If Play doesn’t show “Install”, wait 5–15 minutes and open it again."
         ]
       ],
       "tipsTitle": "Good to know",
       "tips": [
         "Use the same Google account for all three steps — the one signed in to the Play Store on your phone.",
-        "Right after joining the group, the testing page may take a few minutes to appear.",
         "If a page shows up blank, open it in Chrome and check the account in the top-right corner.",
         "Google Drive sync in the beta is still rolling out, so some accounts can't sign in yet. Everything else works.",
         "Questions or ideas? Tell us on Threads @yuzuki.tw."
@@ -478,18 +481,19 @@
         [
           "成为测试人员",
           "打开测试页，点「成为测试人员」。",
-          "成为测试人员"
+          "成为测试人员",
+          "刚加入群组时，Google 要一点时间处理。没看到「成为测试人员」，请等 5～15 分钟再刷新。"
         ],
         [
           "从 Google Play 下载",
           "同一页点「在 Google Play 下载」，或点下面的按钮。",
-          "打开 Google Play"
+          "打开 Google Play",
+          "成为测试人员后，Google 也要处理一下。Play 没出现「安装」，请等 5～15 分钟再打开。"
         ]
       ],
       "tipsTitle": "小提醒",
       "tips": [
         "三个步骤都要用同一个 Google 账号，就是手机 Play 商店登录的那个。",
-        "刚加入群组时，测试页可能要等几分钟才会出现。",
         "页面一片空白时，请用 Chrome 打开，并确认右上角是正确的账号。",
         "测试版的 Google 云端硬盘同步还在开放中，部分账号暂时无法登录，记账功能都能正常使用。",
         "有问题或建议，欢迎到 Threads @yuzuki.tw 告诉我们。"
