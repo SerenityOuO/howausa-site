@@ -11,13 +11,13 @@
 <meta property="og:image" content="https://serenityouo.github.io/howausa-site/img/day.jpg">
 <meta property="og:url" content="https://serenityouo.github.io/howausa-site/ja/android.html">
 <meta name="theme-color" content="#fcf4e6" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#1b1e3b" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#0A0806" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="../img/avatar.png">
 <link rel="apple-touch-icon" href="../img/avatar.png">
 <link rel="alternate" hreflang="zh-Hant" href="https://serenityouo.github.io/howausa-site/zh-Hant/android.html"><link rel="alternate" hreflang="ja" href="https://serenityouo.github.io/howausa-site/ja/android.html"><link rel="alternate" hreflang="en" href="https://serenityouo.github.io/howausa-site/en/android.html"><link rel="alternate" hreflang="zh-Hans" href="https://serenityouo.github.io/howausa-site/zh-Hans/android.html">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Huninn&family=LXGW+WenKai+TC:wght@400;700&display=swap">
 <style>
-/* 版面照旅圖官網：窄單欄置中、頂上膠囊分頁、一段一張卡片。白天＝午後手帳、夜晚（html.dark）＝雨夜床邊窗 */
+/* 版面照旅圖官網：窄單欄置中、頂上膠囊分頁、一段一張卡片。白天＝午後手帳、夜晚（html.dark）＝App 的雨夜床邊窗配色（暖黑、琥珀、深咖啡毛玻璃；11-16 選 B 房間照片當背景） */
 :root{
   --bg:#fcf4e6;--card:#fffaf1;--ink:#5a3826;--mute:#8f6f5c;--line:#5a3826;
   --honey:#f6dcab;--peach:#f5cdbf;--cta:#f0a08e;--cta-ink:#4a2a1c;--chip:#fbe7c6;--tag:#cfe3b8;--tag-ink:#3f5a2a;--link:#a2553a;
@@ -26,20 +26,21 @@
   color-scheme:light;
 }
 html.dark{
-  --bg:#1b1e3b;--card:rgba(52,58,112,.72);--ink:#fff1dc;--mute:#c7bfd6;--line:rgba(243,234,240,.28);
-  --honey:rgba(255,178,106,.16);--peach:rgba(233,166,92,.10);--cta:#ffb26a;--cta-ink:#2a1d18;--chip:rgba(255,178,106,.18);--tag:rgba(255,178,106,.25);--tag-ink:#ffd9ad;--link:#ffc98f;
-  --shadow:0 18px 40px -22px rgba(0,0,0,.8),0 0 0 1px rgba(243,234,240,.08) inset;--bw:1px;--r:24px;
+  --bg:#0A0806;--card:rgba(24,19,15,.80);--ink:#FFF3E3;--mute:rgba(255,243,227,.62);--line:rgba(255,236,214,.13);
+  --honey:rgba(255,194,122,.10);--peach:rgba(246,177,168,.08);--cta:#FFC27A;--cta-ink:#2B1A12;--chip:rgba(255,194,122,.14);--tag:rgba(175,221,191,.16);--tag-ink:#AFDDBF;--link:#FFC27A;
+  --shadow:0 18px 40px -22px rgba(0,0,0,.9),0 0 0 1px rgba(255,236,214,.07) inset;--bw:1px;--r:24px;
   color-scheme:dark;
 }
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--ui);font-size:15px;line-height:1.7}
-html.dark body{background:linear-gradient(180deg,#2b3060,#1b1e3b 40%) fixed,#1b1e3b}
+html.dark body{background:#0A0806}
 img{max-width:100%}
 [hidden]{display:none!important}
 .deco{position:fixed;inset:0;pointer-events:none;z-index:0}
 html:not(.dark) .deco{background:radial-gradient(260px 200px at 0 0,rgba(255,214,150,.55),transparent 70%),radial-gradient(240px 220px at 100% 100%,rgba(245,205,191,.6),transparent 70%)}
-html.dark .deco{background:repeating-linear-gradient(105deg,transparent 0 22px,rgba(220,225,255,.05) 22px 23px),radial-gradient(320px 260px at 92% 6%,rgba(255,178,106,.22),transparent 70%)}
+html.dark .deco::before{content:"";position:absolute;inset:-60px;background:url(../img/night.jpg) center/cover;filter:blur(26px) brightness(.58) saturate(1.15)}
+html.dark .deco::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,8,6,.15),rgba(10,8,6,.6))}
 .wrap{position:relative;z-index:1;max-width:520px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:16px 40px;display:grid;gap:18px}
 a{color:inherit}
 h1,h2,h3{font-family:var(--hand);font-weight:700;margin:0;text-wrap:balance}
@@ -67,7 +68,7 @@ html.dark .theme,html.dark .lang select{box-shadow:none;backdrop-filter:blur(8px
 .nav a{flex:none;text-decoration:none;font-size:14px;padding:7px 14px;border-radius:999px;background:var(--card);border:var(--bw) solid var(--line);box-shadow:2px 2px 0 var(--line)}
 .nav a.on{background:var(--honey)}
 html.dark .nav a{box-shadow:none;backdrop-filter:blur(8px)}
-html.dark .nav a.on{background:rgba(255,178,106,.28)}
+html.dark .nav a.on{background:rgba(255,194,122,.22)}
 
 /* 卡片 */
 .card{background:var(--card);border:var(--bw) solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);padding:18px 16px 20px;position:relative;min-width:0}
@@ -93,7 +94,7 @@ html.dark .hero .pic::before{opacity:1}
 /* 功能格 */
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px}
 .feat{display:flex;gap:10px;align-items:flex-start;padding:11px 12px;border-radius:14px;background:var(--card);border:var(--bw) solid var(--line);box-shadow:2px 2px 0 var(--line);min-width:0}
-html.dark .feat{background:rgba(255,255,255,.05);box-shadow:none}
+html.dark .feat{background:rgba(255,236,214,.04);box-shadow:none}
 .ic{flex:none;width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:var(--chip);border:var(--bw) solid var(--line)}
 .ic svg{width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 .feat h3{font-size:15.5px;line-height:1.35}
@@ -102,7 +103,7 @@ html.dark .feat{background:rgba(255,255,255,.05);box-shadow:none}
 .btn{display:flex;align-items:center;justify-content:center;text-align:center;min-height:46px;padding:8px 12px;border-radius:999px;font:700 15px var(--hand);text-decoration:none;background:var(--cta);color:var(--cta-ink);border:var(--bw) solid var(--line);box-shadow:3px 3px 0 var(--line)}
 .btn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--line)}
 .btn.off{background:transparent;color:var(--mute);box-shadow:none;cursor:default}
-html.dark .btn{box-shadow:0 8px 20px -10px rgba(255,178,106,.8)}
+html.dark .btn{box-shadow:0 8px 22px -10px rgba(255,180,94,.75)}
 html.dark .btn.off{box-shadow:none}
 .note{font-size:12.5px;color:var(--mute);margin:12px 0 0}
 
@@ -115,7 +116,7 @@ html.dark .btn.off{box-shadow:none}
 /* 隱私四格 */
 .trust{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .trust div{background:var(--card);border:var(--bw) solid var(--line);border-radius:14px;padding:10px 12px;font-size:13px}
-html.dark .trust div{background:rgba(255,255,255,.05)}
+html.dark .trust div{background:rgba(255,236,214,.04)}
 .trust b{display:block;font:700 15px var(--hand)}
 
 /* 條款、隱私權政策 */
