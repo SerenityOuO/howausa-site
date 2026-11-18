@@ -33,7 +33,7 @@ LANGS = [  # (資料夾, md 段落標題, html lang, 切換列顯示)
 ]
 PAGES = {"privacy": "隱私權政策.md", "terms": "使用條款.md"}
 TEXT = json.loads((ROOT / "landing.json").read_text(encoding="utf-8"))
-SHOTS = ["auto-note", "auto-list", "s01", "s06", "s08", "s09", "s04", "s03", "s05"]
+SHOTS = ["s01", "auto-note", "auto-list", "s06", "s08", "s09", "s04", "s03", "s05"]
 ICONS = ["pen", "home", "ring", "stamp", "two", "widget", "plane", "cal"]
 
 FONTS = '<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Huninn&family=LXGW+WenKai+TC:wght@400;700&display=swap">'

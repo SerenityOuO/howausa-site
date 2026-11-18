@@ -1,5 +1,5 @@
 {
-  "_說明": "首頁四種語言的文字。build.py 讀這份產生 <語言>/index.html。功能八格、截圖說明的順序四語要一致。 截圖前兩張是自動記帳（auto-note 便條、auto-list 清單）。",
+  "_說明": "首頁四種語言的文字。build.py 讀這份產生 <語言>/index.html。功能八格、截圖說明的順序四語要一致。 截圖第 2、3 張是自動記帳（auto-note 便條、auto-list 清單）。",
   "zh-Hant": {
     "name": "棉棉兔記帳",
     "short": "繁中",
@@ -59,9 +59,9 @@
     "shotsTitle": "看看畫面",
     "shotsSub": "都是 App 裡的真畫面，往左滑看更多。",
     "shots": [
+      "主頁",
       "兔兔幫你填好",
       "刷完卡自動記",
-      "主頁",
       "記一筆",
       "預算",
       "存錢罐",
@@ -188,9 +188,9 @@
     "shotsTitle": "画面を見る",
     "shotsSub": "すべてアプリの実際の画面です。左にスワイプでもっと見られます。",
     "shots": [
+      "ホーム",
       "うさぎが自動入力",
       "カード払いを自動記録",
-      "ホーム",
       "記録",
       "予算",
       "貯金箱",
@@ -317,9 +317,9 @@
     "shotsTitle": "Take a look",
     "shotsSub": "Real screens from the app. Swipe left for more.",
     "shots": [
+      "Home",
       "Filled in for you",
       "Card swipes, logged",
-      "Home",
       "New entry",
       "Budget",
       "Savings",
@@ -446,9 +446,9 @@
     "shotsTitle": "看看界面",
     "shotsSub": "都是 App 里的真实界面，往左滑看更多。",
     "shots": [
+      "首页",
       "兔兔帮你填好",
       "刷完卡自动记",
-      "首页",
       "记一笔",
       "预算",
       "存钱罐",
