@@ -113,10 +113,9 @@ html.dark .btn.off{box-shadow:none}
 .shot img{display:block;width:100%;height:auto;aspect-ratio:600/1305;object-fit:cover;border-radius:14px;border:var(--bw) solid var(--line)}
 .shot figcaption{font-size:12.5px;color:var(--mute);text-align:center;margin-top:6px}
 
-/* 自動記帳（只有有宣傳圖的語言才顯示） */
-.auto{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.auto figure{margin:0}
-.auto img{display:block;width:100%;height:auto;aspect-ratio:4/5;border-radius:14px;border:var(--bw) solid var(--line)}
+/* 自動記帳宣傳圖（4:5）排在看畫面最前面，跟手機截圖一樣高（只有有宣傳圖的語言才有） */
+.shot.wide{width:80%;max-width:348px}
+.shot.wide img{aspect-ratio:4/5}
 
 /* 隱私四格 */
 .trust{display:grid;grid-template-columns:1fr 1fr;gap:10px}

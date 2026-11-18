@@ -135,10 +135,9 @@ html.dark .btn.off{box-shadow:none}
 .shot img{display:block;width:100%;height:auto;aspect-ratio:600/1305;object-fit:cover;border-radius:14px;border:var(--bw) solid var(--line)}
 .shot figcaption{font-size:12.5px;color:var(--mute);text-align:center;margin-top:6px}
 
-/* 自動記帳（只有有宣傳圖的語言才顯示） */
-.auto{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.auto figure{margin:0}
-.auto img{display:block;width:100%;height:auto;aspect-ratio:4/5;border-radius:14px;border:var(--bw) solid var(--line)}
+/* 自動記帳宣傳圖（4:5）排在看畫面最前面，跟手機截圖一樣高（只有有宣傳圖的語言才有） */
+.shot.wide{width:80%;max-width:348px}
+.shot.wide img{aspect-ratio:4/5}
 
 /* 隱私四格 */
 .trust{display:grid;grid-template-columns:1fr 1fr;gap:10px}
@@ -346,22 +345,19 @@ def landing(lang) -> str:
         f'<div class="feat"><span class="ic"><svg aria-hidden="true"><use href="#i-{icon}"/></svg></span><div><h3>{e(t)}</h3><p>{e(d)}</p></div></div>'
         for icon, (t, d) in zip(ICONS, T["feats"])
     )
+    A = T.get("auto") or {"imgs": [], "caps": [], "alts": []}
+    items = [(n, cap, alt, True) for n, cap, alt in zip(A["imgs"], A["caps"], A["alts"])]
+    items += [(n, cap, cap, False) for n, cap in zip(SHOTS, T["shots"])]
     shots = "".join(
-        f'<figure class="shot"><img src="../img/{name}.jpg" alt="{e(cap)}"{"" if i == 0 else " loading=\"lazy\""} width="600" height="1305"><figcaption>{e(cap)}</figcaption></figure>'
-        for i, (name, cap) in enumerate(zip(SHOTS, T["shots"]))
+        f'<figure class="shot{" wide" if wide else ""}"><img src="../img/{name}.jpg" alt="{e(alt)}"{"" if i == 0 else " loading=\"lazy\""} width="{1080 if wide else 600}" height="{1350 if wide else 1305}"><figcaption>{e(cap)}</figcaption></figure>'
+        for i, (name, cap, alt, wide) in enumerate(items)
     )
     trust = "".join(f"<div><b>{e(t)}</b>{e(d)}</div>" for t, d in T["trust"])
-    A = T.get("auto")
-    auto = "" if not A else (
-        f'<section class="card" id="auto"><h2>{e(A["title"])}</h2><p class="sub">{e(A["sub"])}</p><div class="auto">'
-        + "".join(f'<figure><img src="../img/{n}.jpg" alt="{e(alt)}" loading="lazy" width="1080" height="1350"></figure>' for n, alt in zip(A["imgs"], A["alts"]))
-        + "</div></section>\n"
-    )
     return f"""{SVG}
 <section class="card hero"><div class="pic" role="img" aria-label="{e(T["heroAlt"])}"><div class="txt"><h1>{e(T["name"])}</h1><p>{e(T["tagline"])}</p></div></div>
 <div class="get"><div class="cta"><a class="btn" href="{TESTFLIGHT}" target="_blank" rel="noopener">{e(T["ctaTest"])}</a><a class="btn" href="android.html">{e(T["ctaAndroid"])}</a></div>
 <p class="note">{e(T["note"])}</p></div></section>
-{auto}<section class="card"><h2>{e(T["featTitle"])}</h2><div class="grid">{feats}</div></section>
+<section class="card"><h2>{e(T["featTitle"])}</h2><div class="grid">{feats}</div></section>
 <section class="card" id="shots"><h2>{e(T["shotsTitle"])}</h2><p class="sub">{e(T["shotsSub"])}</p><div class="strip">{shots}</div></section>
 <section class="card peach"><h2>{e(T["trustTitle"])}</h2><div class="trust">{trust}</div></section>"""
 
