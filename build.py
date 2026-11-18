@@ -135,6 +135,11 @@ html.dark .btn.off{box-shadow:none}
 .shot img{display:block;width:100%;height:auto;aspect-ratio:600/1305;object-fit:cover;border-radius:14px;border:var(--bw) solid var(--line)}
 .shot figcaption{font-size:12.5px;color:var(--mute);text-align:center;margin-top:6px}
 
+/* 自動記帳（只有有宣傳圖的語言才顯示） */
+.auto{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.auto figure{margin:0}
+.auto img{display:block;width:100%;height:auto;aspect-ratio:4/5;border-radius:14px;border:var(--bw) solid var(--line)}
+
 /* 隱私四格 */
 .trust{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .trust div{background:var(--card);border:var(--bw) solid var(--line);border-radius:14px;padding:10px 12px;font-size:13px}
@@ -346,12 +351,18 @@ def landing(lang) -> str:
         for i, (name, cap) in enumerate(zip(SHOTS, T["shots"]))
     )
     trust = "".join(f"<div><b>{e(t)}</b>{e(d)}</div>" for t, d in T["trust"])
+    A = T.get("auto")
+    auto = "" if not A else (
+        f'<section class="card" id="auto"><h2>{e(A["title"])}</h2><p class="sub">{e(A["sub"])}</p><div class="auto">'
+        + "".join(f'<figure><img src="../img/{n}.jpg" alt="{e(alt)}" loading="lazy" width="1080" height="1350"></figure>' for n, alt in zip(A["imgs"], A["alts"]))
+        + "</div></section>\n"
+    )
     return f"""{SVG}
 <section class="card hero"><div class="pic" role="img" aria-label="{e(T["heroAlt"])}"><div class="txt"><h1>{e(T["name"])}</h1><p>{e(T["tagline"])}</p></div></div>
 <div class="get"><div class="cta"><a class="btn" href="{TESTFLIGHT}" target="_blank" rel="noopener">{e(T["ctaTest"])}</a><a class="btn" href="android.html">{e(T["ctaAndroid"])}</a></div>
 <p class="note">{e(T["note"])}</p></div></section>
 <section class="card"><h2>{e(T["featTitle"])}</h2><div class="grid">{feats}</div></section>
-<section class="card" id="shots"><h2>{e(T["shotsTitle"])}</h2><p class="sub">{e(T["shotsSub"])}</p><div class="strip">{shots}</div></section>
+{auto}<section class="card" id="shots"><h2>{e(T["shotsTitle"])}</h2><p class="sub">{e(T["shotsSub"])}</p><div class="strip">{shots}</div></section>
 <section class="card peach"><h2>{e(T["trustTitle"])}</h2><div class="trust">{trust}</div></section>"""
 
 
