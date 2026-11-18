@@ -361,8 +361,8 @@ def landing(lang) -> str:
 <section class="card hero"><div class="pic" role="img" aria-label="{e(T["heroAlt"])}"><div class="txt"><h1>{e(T["name"])}</h1><p>{e(T["tagline"])}</p></div></div>
 <div class="get"><div class="cta"><a class="btn" href="{TESTFLIGHT}" target="_blank" rel="noopener">{e(T["ctaTest"])}</a><a class="btn" href="android.html">{e(T["ctaAndroid"])}</a></div>
 <p class="note">{e(T["note"])}</p></div></section>
-<section class="card"><h2>{e(T["featTitle"])}</h2><div class="grid">{feats}</div></section>
-{auto}<section class="card" id="shots"><h2>{e(T["shotsTitle"])}</h2><p class="sub">{e(T["shotsSub"])}</p><div class="strip">{shots}</div></section>
+{auto}<section class="card"><h2>{e(T["featTitle"])}</h2><div class="grid">{feats}</div></section>
+<section class="card" id="shots"><h2>{e(T["shotsTitle"])}</h2><p class="sub">{e(T["shotsSub"])}</p><div class="strip">{shots}</div></section>
 <section class="card peach"><h2>{e(T["trustTitle"])}</h2><div class="trust">{trust}</div></section>"""
 
 
