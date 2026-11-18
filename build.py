@@ -33,7 +33,7 @@ LANGS = [  # (資料夾, md 段落標題, html lang, 切換列顯示)
 ]
 PAGES = {"privacy": "隱私權政策.md", "terms": "使用條款.md"}
 TEXT = json.loads((ROOT / "landing.json").read_text(encoding="utf-8"))
-SHOTS = ["s01", "s06", "s08", "s09", "s04", "s03", "s05"]
+SHOTS = ["auto-note", "auto-list", "s01", "s06", "s08", "s09", "s04", "s03", "s05"]
 ICONS = ["pen", "home", "ring", "stamp", "two", "widget", "plane", "cal"]
 
 FONTS = '<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Huninn&family=LXGW+WenKai+TC:wght@400;700&display=swap">'
@@ -135,9 +135,6 @@ html.dark .btn.off{box-shadow:none}
 .shot img{display:block;width:100%;height:auto;aspect-ratio:600/1305;object-fit:cover;border-radius:14px;border:var(--bw) solid var(--line)}
 .shot figcaption{font-size:12.5px;color:var(--mute);text-align:center;margin-top:6px}
 
-/* 自動記帳宣傳圖（4:5）排在看畫面最前面，跟手機截圖一樣高（只有有宣傳圖的語言才有） */
-.shot.wide{width:80%;max-width:348px}
-.shot.wide img{aspect-ratio:4/5}
 
 /* 隱私四格 */
 .trust{display:grid;grid-template-columns:1fr 1fr;gap:10px}
@@ -345,12 +342,9 @@ def landing(lang) -> str:
         f'<div class="feat"><span class="ic"><svg aria-hidden="true"><use href="#i-{icon}"/></svg></span><div><h3>{e(t)}</h3><p>{e(d)}</p></div></div>'
         for icon, (t, d) in zip(ICONS, T["feats"])
     )
-    A = T.get("auto") or {"imgs": [], "caps": [], "alts": []}
-    items = [(n, cap, alt, True) for n, cap, alt in zip(A["imgs"], A["caps"], A["alts"])]
-    items += [(n, cap, cap, False) for n, cap in zip(SHOTS, T["shots"])]
     shots = "".join(
-        f'<figure class="shot{" wide" if wide else ""}"><img src="../img/{name}.jpg" alt="{e(alt)}"{"" if i == 0 else " loading=\"lazy\""} width="{1080 if wide else 600}" height="{1350 if wide else 1305}"><figcaption>{e(cap)}</figcaption></figure>'
-        for i, (name, cap, alt, wide) in enumerate(items)
+        f'<figure class="shot"><img src="../img/{name}.jpg" alt="{e(cap)}"{"" if i == 0 else " loading=\"lazy\""} width="600" height="1305"><figcaption>{e(cap)}</figcaption></figure>'
+        for i, (name, cap) in enumerate(zip(SHOTS, T["shots"]))
     )
     trust = "".join(f"<div><b>{e(t)}</b>{e(d)}</div>" for t, d in T["trust"])
     return f"""{SVG}

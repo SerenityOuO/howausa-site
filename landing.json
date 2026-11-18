@@ -1,5 +1,5 @@
 {
-  "_說明": "首頁四種語言的文字。build.py 讀這份產生 <語言>/index.html。功能八格、截圖說明的順序四語要一致。 zh-Hant 的 auto 是自動記帳宣傳圖，排在「看看畫面」最前面（宣傳圖只有繁中，其他語言沒有這個鍵就只放 App 截圖）。",
+  "_說明": "首頁四種語言的文字。build.py 讀這份產生 <語言>/index.html。功能八格、截圖說明的順序四語要一致。 截圖前兩張是自動記帳（auto-note 便條、auto-list 清單）。",
   "zh-Hant": {
     "name": "棉棉兔記帳",
     "short": "繁中",
@@ -56,23 +56,11 @@
     "ctaTest": "iPhone 公開測試",
     "ctaStore": "App Store 即將上架",
     "note": "免費就能完整記帳。支援繁體中文、简体中文、English、日本語。App Store、Google Play 即將上架。",
-    "auto": {
-      "imgs": [
-        "auto-1",
-        "auto-2"
-      ],
-      "caps": [
-        "刷完卡兔兔幫你記",
-        "金額分類都填好了"
-      ],
-      "alts": [
-        "刷完卡兔兔幫你記：收到刷卡通知，棉棉兔幫你記帳",
-        "兔兔看通知幫你填好了：金額、分類、帳戶、時間、備註都已填好"
-      ]
-    },
     "shotsTitle": "看看畫面",
     "shotsSub": "都是 App 裡的真畫面，往左滑看更多。",
     "shots": [
+      "兔兔幫你填好",
+      "刷完卡自動記",
       "主頁",
       "記一筆",
       "預算",
@@ -200,6 +188,8 @@
     "shotsTitle": "画面を見る",
     "shotsSub": "すべてアプリの実際の画面です。左にスワイプでもっと見られます。",
     "shots": [
+      "うさぎが自動入力",
+      "カード払いを自動記録",
       "ホーム",
       "記録",
       "予算",
@@ -327,6 +317,8 @@
     "shotsTitle": "Take a look",
     "shotsSub": "Real screens from the app. Swipe left for more.",
     "shots": [
+      "Filled in for you",
+      "Card swipes, logged",
       "Home",
       "New entry",
       "Budget",
@@ -454,6 +446,8 @@
     "shotsTitle": "看看界面",
     "shotsSub": "都是 App 里的真实界面，往左滑看更多。",
     "shots": [
+      "兔兔帮你填好",
+      "刷完卡自动记",
       "首页",
       "记一笔",
       "预算",
