@@ -60,8 +60,8 @@
     "shotsSub": "都是 App 裡的真畫面，往左滑看更多。",
     "shots": [
       "主頁",
-      "兔兔幫你填好",
-      "刷完卡自動記",
+      "自動記帳",
+      "自動化",
       "記一筆",
       "預算",
       "存錢罐",
@@ -189,8 +189,8 @@
     "shotsSub": "すべてアプリの実際の画面です。左にスワイプでもっと見られます。",
     "shots": [
       "ホーム",
-      "うさぎが自動入力",
-      "カード払いを自動記録",
+      "自動記録",
+      "自動化",
       "記録",
       "予算",
       "貯金箱",
@@ -318,8 +318,8 @@
     "shotsSub": "Real screens from the app. Swipe left for more.",
     "shots": [
       "Home",
-      "Filled in for you",
-      "Card swipes, logged",
+      "Auto entry",
+      "Automation",
       "New entry",
       "Budget",
       "Savings",
@@ -447,8 +447,8 @@
     "shotsSub": "都是 App 里的真实界面，往左滑看更多。",
     "shots": [
       "首页",
-      "兔兔帮你填好",
-      "刷完卡自动记",
+      "自动记账",
+      "自动化",
       "记一笔",
       "预算",
       "存钱罐",
