@@ -4,11 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Howausa: Bunny Budget — a budget app with a felt bunny</title>
-<meta name="description" content="A little felt bunny named Cotton lives in your phone and keeps you company while you track your money. No ads, no data collection.">
+<meta name="description" content="Pay by card and the entry is already filled in. Check it, then save. A felt bunny lives in the room, by day and by candlelight. Share one ledger and set a budget for each category.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Howausa: Bunny Budget — a budget app with a felt bunny">
-<meta property="og:description" content="A little felt bunny named Cotton lives in your phone and keeps you company while you track your money. No ads, no data collection.">
-<meta property="og:image" content="https://serenityouo.github.io/howausa-site/img/day.jpg">
+<meta property="og:description" content="Pay by card and the entry is already filled in. Check it, then save. A felt bunny lives in the room, by day and by candlelight. Share one ledger and set a budget for each category.">
+<meta property="og:image" content="https://serenityouo.github.io/howausa-site/img/home/en-room-day.jpg">
 <meta property="og:url" content="https://serenityouo.github.io/howausa-site/en/index.html">
 <meta name="theme-color" content="#fcf4e6" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0A0806" media="(prefers-color-scheme: dark)">
@@ -17,7 +17,7 @@
 <link rel="alternate" hreflang="zh-Hant" href="https://serenityouo.github.io/howausa-site/zh-Hant/index.html"><link rel="alternate" hreflang="ja" href="https://serenityouo.github.io/howausa-site/ja/index.html"><link rel="alternate" hreflang="en" href="https://serenityouo.github.io/howausa-site/en/index.html"><link rel="alternate" hreflang="zh-Hans" href="https://serenityouo.github.io/howausa-site/zh-Hans/index.html">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Huninn&family=LXGW+WenKai+TC:wght@400;700&display=swap">
 <style>
-/* 版面照旅圖官網：窄單欄置中、頂上膠囊分頁、一段一張卡片。白天＝午後手帳、夜晚（html.dark）＝App 的雨夜床邊窗配色（暖黑、琥珀、深咖啡毛玻璃；11-16 選 B 房間照片當背景） */
+/* 版面照旅圖官網：窄單欄置中、頂上膠囊分頁、一段一張卡片。白天＝午後手帳、夜晚（html.dark）＝App 的夜晚配色（暖黑、琥珀、深咖啡毛玻璃；11-16 選 B 房間照片當背景） */
 :root{
   --bg:#fcf4e6;--card:#fffaf1;--ink:#5a3826;--mute:#8f6f5c;--line:#5a3826;
   --honey:#f6dcab;--peach:#f5cdbf;--cta:#f0a08e;--cta-ink:#4a2a1c;--chip:#fbe7c6;--tag:#cfe3b8;--tag-ink:#3f5a2a;--link:#a2553a;
@@ -39,13 +39,13 @@ img{max-width:100%}
 [hidden]{display:none!important}
 .deco{position:fixed;inset:0;pointer-events:none;z-index:0}
 html:not(.dark) .deco{background:radial-gradient(260px 200px at 0 0,rgba(255,214,150,.55),transparent 70%),radial-gradient(240px 220px at 100% 100%,rgba(245,205,191,.6),transparent 70%)}
-html.dark .deco::before{content:"";position:absolute;inset:-60px;background:url(../img/night.jpg) center/cover;filter:blur(26px) brightness(.58) saturate(1.15)}
+html.dark .deco::before{content:"";position:absolute;inset:-60px;background:url(../img/home/zh-Hant-room-night.jpg) center/cover;filter:blur(26px) brightness(.58) saturate(1.15)}
 html.dark .deco::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,8,6,.15),rgba(10,8,6,.6))}
 .wrap{position:relative;z-index:1;max-width:520px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:16px 40px;display:grid;gap:18px}
 a{color:inherit}
 h1,h2,h3{font-family:var(--hand);font-weight:700;margin:0;text-wrap:balance}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-.card,.feat,.nav a,.btn,.trust div,.ic,.theme,.lang select{transition:background-color .4s,border-color .4s,color .4s,box-shadow .4s}
+.card,.nav a,.btn,.theme,.lang select{transition:background-color .4s,border-color .4s,color .4s,box-shadow .4s}
 
 /* 頁首 */
 .top{display:flex;align-items:center;justify-content:space-between;gap:10px}
@@ -78,47 +78,85 @@ html.dark .card{backdrop-filter:blur(14px)}
 .card h2{font-size:21px;margin-bottom:6px}
 .sub{color:var(--mute);font-size:13.5px;margin:0 0 14px}
 
-/* 大圖 */
+/* 首頁：主圖是會動的房間；影片沒播時就是同一張圖，不留空洞 */
 .hero{padding:0;overflow:hidden}
-.hero .pic{position:relative;aspect-ratio:1092/510;max-width:100%;background:linear-gradient(180deg,rgba(60,30,14,.5),rgba(60,30,14,0) 64%),url(../img/day.jpg) center/cover no-repeat}
-.hero .pic::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(12,14,40,.45),rgba(12,14,40,0) 64%),url(../img/night.jpg) center/cover;opacity:0;transition:opacity .6s ease}
-html.dark .hero .pic::before{opacity:1}
-.hero .txt{position:absolute;z-index:1;left:16px;top:14px;right:16px;color:#fff8ec;text-shadow:0 1px 10px rgba(60,30,15,.5)}
-.hero h1{font-size:clamp(24px,7vw,30px);line-height:1.2}
-.hero p{margin:4px 0 0;font-size:14px;max-width:24em}
-
-/* 大圖下的下載按鈕 */
+.hero .txt{padding:18px 18px 12px}
+.hero h1{font-size:clamp(26px,7.6vw,34px);line-height:1.25}
+.hero .txt p{margin:6px 0 0;font-size:15.5px;color:var(--mute)}
 .hero .get{padding:14px 16px 16px}
-.hero .get .cta{margin-top:0}
-.hero .get .note{margin-top:10px;text-wrap:pretty}
-/* 功能格 */
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px}
-.feat{display:flex;gap:10px;align-items:flex-start;padding:11px 12px;border-radius:14px;background:var(--card);border:var(--bw) solid var(--line);box-shadow:2px 2px 0 var(--line);min-width:0}
-html.dark .feat{background:rgba(255,236,214,.04);box-shadow:none}
-.ic{flex:none;width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:var(--chip);border:var(--bw) solid var(--line)}
-.ic svg{width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
-.feat h3{font-size:15.5px;line-height:1.35}
-.feat p{margin:2px 0 0;font-size:12.5px;color:var(--mute);line-height:1.55}
+.vid{position:relative;overflow:hidden;background:var(--chip)}
+.vid img,.vid video{display:block;width:100%;height:auto;aspect-ratio:var(--ar)}
+.vid img{object-fit:cover}
+.vid video{position:absolute;inset:0;height:100%;object-fit:cover;opacity:0;transition:opacity .3s}
+.vid video.on{opacity:1}
+.hero .vid{border-block:var(--bw) solid var(--line)}
+html.dark .d,html:not(.dark) .n{display:none!important}
 .cta{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
+.cta.one{grid-template-columns:1fr}
+.hero .cta{margin-top:0}
 .btn{display:flex;align-items:center;justify-content:center;text-align:center;min-height:46px;padding:8px 12px;border-radius:999px;font:700 15px var(--hand);text-decoration:none;background:var(--cta);color:var(--cta-ink);border:var(--bw) solid var(--line);box-shadow:3px 3px 0 var(--line)}
 .btn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--line)}
 .btn.off{background:transparent;color:var(--mute);box-shadow:none;cursor:default}
 html.dark .btn{box-shadow:0 8px 22px -10px rgba(255,180,94,.75)}
 html.dark .btn.off{box-shadow:none}
 .note{font-size:12.5px;color:var(--mute);margin:12px 0 0}
-
-/* 看畫面 */
-.strip{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;padding:4px 4px 10px;margin-inline:-4px;scrollbar-width:thin}
-.shot{flex:none;width:46%;max-width:200px;scroll-snap-align:start;margin:0}
-.shot img{display:block;width:100%;height:auto;aspect-ratio:600/1305;object-fit:cover;border-radius:14px;border:var(--bw) solid var(--line)}
-.shot figcaption{font-size:12.5px;color:var(--mute);text-align:center;margin-top:6px}
-
-
-/* 隱私四格 */
-.trust{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.trust div{background:var(--card);border:var(--bw) solid var(--line);border-radius:14px;padding:10px 12px;font-size:13px}
-html.dark .trust div{background:rgba(255,236,214,.04)}
-.trust b{display:block;font:700 15px var(--hand)}
+.big h2{font-size:25px;line-height:1.35;margin-bottom:4px}
+.big .lead,.pt p,.pic figcaption{text-wrap:pretty}
+.big .lead{text-wrap:balance;margin:0 0 14px;font-size:14.5px;color:var(--mute)}
+/* 圖框：上緣貼一截紙膠帶 */
+.pic{position:relative;margin:0}
+.pic>img,.pic>.vid,.draw{display:block;width:100%;height:auto;border-radius:16px;border:var(--bw) solid var(--line);overflow:hidden}
+.pic.t::before{content:"";position:absolute;z-index:2;left:50%;top:-11px;width:92px;height:24px;margin-left:-46px;transform:rotate(-3deg);background:repeating-linear-gradient(90deg,rgba(244,205,120,.94) 0 8px,rgba(250,224,164,.94) 8px 16px);clip-path:polygon(0 0,100% 0,97% 25%,100% 50%,97% 75%,100% 100%,0 100%,3% 75%,0 50%,3% 25%)}
+.pic.t.pink::before{background:repeating-linear-gradient(90deg,rgba(232,160,174,.92) 0 7px,rgba(242,190,200,.92) 7px 14px)}
+.pic.t.green::before{background:repeating-linear-gradient(90deg,rgba(164,190,160,.94) 0 7px,rgba(196,214,190,.94) 7px 14px)}
+.pic figcaption{margin:8px 2px 0;font-size:14px;line-height:1.6;color:var(--mute)}
+.gap{display:grid;gap:24px;margin-top:20px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+/* 三點 */
+.pt h3{font-size:19px;line-height:1.4}
+.pt>p{margin:3px 0 18px;font-size:14.5px;color:var(--mute)}
+.tip{margin:22px 0 0;font:400 15.5px/1.7 var(--hand)}
+.tip span,.mark{background:linear-gradient(transparent 58%,rgba(244,205,120,.55) 58% 94%,transparent 94%)}
+html.dark .tip span,html.dark .mark{background:linear-gradient(transparent 58%,rgba(255,194,122,.28) 58% 94%,transparent 94%)}
+/* 網頁自己畫的小示意（沒有對應語言的截圖時用） */
+.draw{position:relative;padding:20px 16px 26px;background:#efe6d6;color:#4a3a31;font:400 14px/1.5 var(--ui)}
+html.dark .draw{background:#191410;color:#FFF3E3}
+.sheet{background:#fbf7ef;border-radius:16px;padding:14px;box-shadow:0 6px 18px -10px rgba(90,56,38,.5)}
+html.dark .sheet{background:#241c16;box-shadow:none;border:1px solid rgba(255,236,214,.1)}
+.lab{position:absolute;right:14px;bottom:5px;font-size:11px;line-height:1.4;opacity:.62}
+.noti{display:flex;gap:10px;align-items:center;background:#fffdf9;border-radius:14px;padding:10px 12px;box-shadow:0 6px 16px -10px rgba(90,56,38,.6)}
+html.dark .noti{background:#2b221b;box-shadow:none}
+.app{flex:none;width:34px;height:34px;border-radius:9px;display:grid;place-items:center;background:#c97378;color:#fff;font-size:11px;font-weight:700}
+.app.b{background:#8f7d6b}.app.s{width:22px;height:22px;border-radius:6px;font-size:8px}
+.noti b,.row b{display:block;font-size:14px}
+.noti small,.row small{display:block;font-size:12.5px;opacity:.72}
+.amt{font:700 34px/1.2 Georgia,"Times New Roman",serif;color:#c97378;margin:8px 0 6px}
+html.dark .amt{color:#F6B1A8}
+.kv{display:flex;justify-content:space-between;gap:10px;border-top:1px solid rgba(120,90,70,.18);padding:7px 0;font-size:13.5px}
+html.dark .kv{border-color:rgba(255,236,214,.12)}
+.kv span{opacity:.7}
+.ok{margin-top:10px;background:#c97378;color:#fff;border-radius:999px;text-align:center;padding:9px;font-weight:700}
+html.dark .ok{background:#FFC27A;color:#2B1A12}
+.row{display:flex;gap:10px;align-items:center}
+.row>div{flex:1;min-width:0}
+.row em{font:700 16px Georgia,serif;font-style:normal;color:#c97378}
+html.dark .row em{color:#F6B1A8}
+.row img{width:44px;height:44px;flex:none;border-radius:50%;background:#f0cdbb;object-fit:contain;padding:2px}
+html.dark .row img{background:#6b5040}
+.sheet .row+.row{border-top:1px dashed rgba(120,90,70,.3);margin-top:10px;padding-top:10px}
+html.dark .sheet .row+.row{border-color:rgba(255,236,214,.18)}
+.pill{flex:none;border:1.5px solid #c97378;color:#c97378;border-radius:999px;padding:2px 14px;font-weight:700;font-size:13.5px}
+html.dark .pill{border-color:#FFC27A;color:#FFC27A}
+.hid{background:#a893c0;color:#fff;border-radius:6px;padding:1px 8px;font-size:13px;white-space:nowrap}
+.sent{margin:10px 0 0;font-size:13px;opacity:.75}
+.flow{display:grid;gap:12px}
+.flow>:nth-child(2){animation:flow2 8s infinite}.flow>:nth-child(3){animation:flow3 8s infinite}
+@keyframes flow2{0%,10%{opacity:0;transform:translateY(8px)}18%,92%{opacity:1;transform:none}98%,100%{opacity:0}}
+@keyframes flow3{0%,44%{opacity:0;transform:translateY(8px)}52%,92%{opacity:1;transform:none}98%,100%{opacity:0}}
+:lang(ja) h1,:lang(ja) h2,:lang(ja) .txt p,:lang(ja) .lead,:lang(ja) figcaption{word-break:auto-phrase;line-break:strict}
+.bye{text-align:center}
+.bye p{font:700 18px/1.75 var(--hand);margin:0;text-wrap:balance}
+.bye span{display:inline-block;white-space:pre-wrap}
 
 /* 條款、隱私權政策 */
 .doc article{max-width:62ch}
@@ -151,8 +189,8 @@ footer a{text-underline-offset:3px}
 .guide .pics{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:10px}
 .guide img{width:100%;height:auto;border-radius:12px;border:var(--bw) solid var(--line)}
 .tips{margin:0;padding-left:1.2em;display:grid;gap:6px;font-size:13.5px}
-@media (max-width:380px){.grid{grid-template-columns:1fr}.cta{grid-template-columns:1fr}.brand b{font-size:17px}.theme span{display:none}.theme{padding:0 9px}}
-@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+@media (max-width:380px){.cta{grid-template-columns:1fr}.brand b{font-size:17px}.theme span{display:none}.theme{padding:0 9px}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style>
 <script>(function(){var t=null;try{t=localStorage.getItem('mm-theme')}catch(e){}if(!t)t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';if(t==='dark')document.documentElement.classList.add('dark')})()</script>
 </head>
@@ -167,22 +205,34 @@ footer a{text-underline-offset:3px}
 </div>
 </header>
 <nav class="nav"><a class="on" href="index.html" aria-current="page">Home</a><a class="" href="privacy.html">Privacy</a><a class="" href="terms.html">Terms</a></nav>
-<svg width="0" height="0" style="position:absolute" aria-hidden="true">
-<symbol id="i-pen" viewBox="0 0 24 24"><path d="M4 20l4-1 11-11-3-3L5 16z"/><path d="M14 6l3 3"/></symbol>
-<symbol id="i-home" viewBox="0 0 24 24"><path d="M4 11l8-7 8 7v9H4z"/><path d="M10 20v-5h4v5"/></symbol>
-<symbol id="i-ring" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 4a8 8 0 0 1 8 8"/><path d="M12 9v3l2 2"/></symbol>
-<symbol id="i-stamp" viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="14" rx="2"/><circle cx="9" cy="10" r="1.8"/><circle cx="15" cy="10" r="1.8"/><circle cx="9" cy="15" r="1.8"/><path d="M14 15h2"/></symbol>
-<symbol id="i-two" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><circle cx="16.5" cy="9" r="2.5"/><path d="M3.5 19c.6-3.2 2.8-5 5.5-5s4.9 1.8 5.5 5"/><path d="M15 14.2c2.6-.4 4.8 1.2 5.5 4.3"/></symbol>
-<symbol id="i-widget" viewBox="0 0 24 24"><rect x="4" y="4" width="7" height="7" rx="2"/><rect x="13" y="4" width="7" height="7" rx="2"/><rect x="4" y="13" width="16" height="7" rx="2"/></symbol>
-<symbol id="i-plane" viewBox="0 0 24 24"><path d="M3 13l18-7-5 14-4-5-5 2z"/><path d="M12 15l9-9"/></symbol>
-<symbol id="i-cal" viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/><path d="M9 14l2 2 4-4"/></symbol>
-</svg>
-<section class="card hero"><div class="pic" role="img" aria-label="Cotton the bunny in a cozy room by the window"><div class="txt"><h1>Howausa: Bunny Budget</h1><p>A little felt bunny named Cotton lives in your phone and helps you track and save.</p></div></div>
-<div class="get"><div class="cta"><a class="btn" href="https://testflight.apple.com/join/cSRpbd5j" target="_blank" rel="noopener">Join the iPhone beta</a><a class="btn" href="android.html">Android beta</a></div>
-<p class="note">Full expense tracking for free. Available in 繁體中文, 简体中文, English and 日本語. Coming soon to the App Store and Google Play.</p></div></section>
-<section class="card"><h2>What Cotton can do</h2><div class="grid"><div class="feat"><span class="ic"><svg aria-hidden="true"><use href="#i-pen"/></svg></span><div><h3>Log in a tap</h3><p>Pick a category, type the amount, done. It shows up on Home right away.</p></div></div><div class="feat"><span class="ic"><svg aria-hidden="true"><use href="#i-home"/></svg></span><div><h3>Cotton&#x27;s room</h3><p>A sunlit afternoon journal by day, a rainy window by night.</p></div></div><div class="feat"><span class="ic"><svg aria-hidden="true"><use href="#i-ring"/></svg></span><div><h3>Budgets you can see</h3><p>One ring shows what&#x27;s left. Overspent categories turn red.</p></div></div><div class="feat"><span class="ic"><svg aria-hidden="true"><use href="#i-stamp"/></svg></span><div><h3>Saving like a stamp card</h3><p>Every time you save, you get a stamp.</p></div></div><div class="feat"><span class="ic"><svg aria-hidden="true"><use href="#i-two"/></svg></span><div><h3>Budget together</h3><p>Share a ledger with your partner or roommate and see who logged what.</p></div></div><div class="feat"><span class="ic"><svg aria-hidden="true"><use href="#i-widget"/></svg></span><div><h3>Home Screen widgets</h3><p>Three widgets. Tap to log right from your Home Screen.</p></div></div><div class="feat"><span class="ic"><svg aria-hidden="true"><use href="#i-plane"/></svg></span><div><h3>Travel in any currency</h3><p>Make a travel ledger and foreign currency converts automatically.</p></div></div><div class="feat"><span class="ic"><svg aria-hidden="true"><use href="#i-cal"/></svg></span><div><h3>Monthly recap</h3><p>At the start of each month, see where last month&#x27;s money went.</p></div></div></div></section>
-<section class="card" id="shots"><h2>Take a look</h2><p class="sub">Real screens from the app. Swipe left for more.</p><div class="strip"><figure class="shot"><img src="../img/s01.jpg" alt="Home" width="600" height="1305"><figcaption>Home</figcaption></figure><figure class="shot"><img src="../img/auto-note.jpg" alt="Auto entry" loading="lazy" width="600" height="1305"><figcaption>Auto entry</figcaption></figure><figure class="shot"><img src="../img/auto-list.jpg" alt="Automation" loading="lazy" width="600" height="1305"><figcaption>Automation</figcaption></figure><figure class="shot"><img src="../img/s06.jpg" alt="New entry" loading="lazy" width="600" height="1305"><figcaption>New entry</figcaption></figure><figure class="shot"><img src="../img/s08.jpg" alt="Budget" loading="lazy" width="600" height="1305"><figcaption>Budget</figcaption></figure><figure class="shot"><img src="../img/s09.jpg" alt="Savings" loading="lazy" width="600" height="1305"><figcaption>Savings</figcaption></figure><figure class="shot"><img src="../img/s04.jpg" alt="Shared ledger" loading="lazy" width="600" height="1305"><figcaption>Shared ledger</figcaption></figure><figure class="shot"><img src="../img/s03.jpg" alt="Widgets" loading="lazy" width="600" height="1305"><figcaption>Widgets</figcaption></figure><figure class="shot"><img src="../img/s05.jpg" alt="Night" loading="lazy" width="600" height="1305"><figcaption>Night</figcaption></figure></div></section>
-<section class="card peach"><h2>Your money stays yours</h2><div class="trust"><div><b>No ads</b>Open it and log. No ads, ever.</div><div><b>No data collection</b>We have no servers and can&#x27;t see your records.</div><div><b>Your own iCloud</b>Switch phones and everything comes with you.</div><div><b>Face ID lock</b>Hand someone your phone without worry.</div></div></section>
+<section class="card hero"><div class="txt"><h1>Pay by card. The entry’s already filled in.</h1><p>Take a look, then one tap puts it in your ledger.</p></div>
+<div class="vid" style="--ar:720/561"><img class="d" src="../img/home/en-day.jpg" alt="Cotton the bunny in a cozy room by the window" width="720" height="561" loading="lazy"><img class="n" src="../img/home/en-night.jpg" alt="Cotton the bunny in a cozy room by the window" width="720" height="561" loading="lazy"><video muted loop playsinline preload="none" tabindex="-1" aria-hidden="true" data-day="../img/home/en-day.mp4" data-night="../img/home/en-night.mp4"></video></div>
+<div class="get"><div class="cta"><a class="btn" href="https://testflight.apple.com/join/cSRpbd5j" target="_blank" rel="noopener">Join the iPhone beta</a><a class="btn" href="android.html">Android beta</a></div></div></section>
+<section class="card big" id="auto"><h2>An alert comes in as a finished card</h2><p class="lead">Amount, shop, category and time are written on it, waiting for you to look.</p><figure class="pic t"><div class="draw"><div class="flow"><div class="noti"><span class="app">Bank</span><div><b>Your bank</b><small>Card purchase $7.50</small></div></div><div class="sheet"><b>Lunch Counter</b><div class="amt">$7.50</div><div class="kv"><span>Category</span>Lunch</div><div class="kv"><span>Account</span>Credit card</div><div class="kv"><span>Time</span>Today 12:30</div><div class="ok">✓ Record</div></div><div class="sheet"><div class="row"><div><b>Lunch</b><small>Lunch Counter</small></div><em>-7.50</em></div></div></div><span class="lab">Illustration</span></div></figure><div class="gap"><div class="pt"><h3>Two alerts for one purchase, one card</h3><p>When your bank and your payment app report the same charge, they stack into one. Stacked wrong? Tap “Split” and you get both back.</p><figure class="pic"><div class="draw"><div class="sheet"><div class="row"><span class="app b s">Bank</span><div><b>Your bank</b><small>Card purchase $7.50</small></div></div><div class="row"><span class="app s">Pay</span><div><b>Payment app</b><small>Lunch Counter</small></div><span class="pill">Split</span></div><div class="amt">$7.50</div></div><span class="lab">Illustration</span></div></figure></div><div class="pt"><h3>Nothing is saved until you look</h3><p>Swipe right for a green tape check. Swipe left for a pink tape cross.</p><figure class="pic"><div class="vid" style="--ar:720/400"><img src="../img/home/en-swipe.jpg" alt="Nothing is saved until you look" width="720" height="400" loading="lazy"><video muted loop playsinline preload="none" tabindex="-1" aria-hidden="true" data-day="../img/home/en-swipe.mp4" data-night="../img/home/en-swipe.mp4"></video></div></figure></div><div class="pt"><h3>Before it asks AI, it covers your details</h3><p>Your name and card number become purple tags, and you can see what was sent.</p><figure class="pic"><div class="draw"><div class="sheet">Hi <span class="hid">Name</span>, your card <span class="hid">Card no.</span> was charged $7.50 at Lunch Counter, 12:30.<p class="sent">Only the masked text above is sent</p></div><span class="lab">Illustration</span></div></figure></div></div><p class="tip"><span>Fix it once, and the next alert like it is written your way.</span></p></section>
+<section class="card big honey" id="room"><h2>The bunny lives by the window</h2><p class="lead">Sunlight in the day, a candle at night. Open Assets and the camera walks over to the treasure chest.</p><div class="gap"><figure class="pic t"><img src="../img/home/en-room-day.jpg" alt="Day" width="900" height="534" loading="lazy"></figure><figure class="pic t pink"><img src="../img/home/en-room-night.jpg" alt="Night" width="900" height="534" loading="lazy"></figure></div></section>
+<section class="card big" id="detail"><h2>Budgets are washi tape. Totals are stamps.</h2><div class="gap"><figure class="pic"><img src="../img/home/en-tape.jpg" alt="Spend some, and the tape gets shorter." width="900" height="537" loading="lazy"><figcaption>Spend some, and the tape gets shorter.</figcaption></figure><figure class="pic"><img src="../img/home/en-paper.jpg" alt="Highlighter on the title, a budget card taped to the page." width="900" height="481" loading="lazy"><figcaption>Highlighter on the title, a budget card taped to the page.</figcaption></figure><figure class="pic"><img src="../img/home/en-tag.jpg" alt="Your net worth, on a paper tag." width="900" height="496" loading="lazy"><figcaption>Your net worth, on a paper tag.</figcaption></figure></div></section>
+<section class="card big peach" id="couple"><h2>One ledger for two</h2><p class="lead">You can see who added each entry.</p><figure class="pic t pink"><div class="draw"><div class="sheet"><p style="margin:0 0 10px;font:700 17px var(--hand)"><span class="mark">Our place</span></p><div class="row"><img src="../img/home/av-a.png" alt="Me" loading="lazy" width="44" height="44"><div><b>Corner Bakery</b><small>Me</small></div><em>-4.25</em></div><div class="row"><img src="../img/home/av-b.png" alt="My partner" loading="lazy" width="44" height="44"><div><b>Hot pot</b><small>My partner</small></div><em>-21.00</em></div><div class="row"><img src="../img/home/av-a.png" alt="Me" loading="lazy" width="44" height="44"><div><b>Movie night</b><small>Me</small></div><em>-16.00</em></div></div><span class="lab">Illustration</span></div></figure></section>
+<section class="card bye"><p><span>A budget for each category. </span><span>Your ledger carries over to a new phone. </span><span>Kept on your own phone and cloud.</span></p><div class="cta"><a class="btn" href="https://testflight.apple.com/join/cSRpbd5j" target="_blank" rel="noopener">Join the iPhone beta</a><a class="btn" href="android.html">Android beta</a></div></section>
+<script>(function(){
+var c=navigator.connection||{},rm=matchMedia('(prefers-reduced-motion: reduce)');
+function quiet(){return rm.matches||c.saveData||/2g/.test(c.effectiveType||'')}
+var R=document.documentElement,vs=[].slice.call(document.querySelectorAll('.vid video'));
+function src(v){return R.classList.contains('dark')?v.dataset.night:v.dataset.day}
+function sync(v){
+  if(!v.seen||quiet()){v.pause();if(quiet())v.classList.remove('on');return}
+  var s=src(v);if(v.getAttribute('src')!==s){v.classList.remove('on');v.setAttribute('src',s)}
+  var p=v.play();if(p&&p.catch)p.catch(function(){v.classList.remove('on')});
+}
+vs.forEach(function(v){v.muted=true;v.addEventListener('playing',function(){v.classList.add('on')});v.addEventListener('error',function(){v.classList.remove('on')})});
+function start(){
+  if(!('IntersectionObserver' in window)){vs.forEach(function(v){v.seen=true;sync(v)});return}
+  var io=new IntersectionObserver(function(es){es.forEach(function(x){x.target.seen=x.isIntersecting;sync(x.target)})},{rootMargin:'120px 0px',threshold:.05});
+  vs.forEach(function(v){io.observe(v)});
+}
+if(document.readyState==='complete')start();else addEventListener('load',start);
+new MutationObserver(function(){vs.forEach(sync)}).observe(R,{attributes:true,attributeFilter:['class']});
+rm.addEventListener&&rm.addEventListener('change',function(){vs.forEach(sync)});
+})()</script>
 <footer>
 <nav><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a href="https://www.threads.com/@yuzuki.tw" target="_blank" rel="noopener">Threads @yuzuki.tw</a></nav>
 <div>Yuzuki Studio · indie developer · © 2026</div>

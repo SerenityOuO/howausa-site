@@ -3,7 +3,7 @@
 - 隱私權政策、使用條款：主程式儲存庫的 `上架準備/隱私權政策.md`、`上架準備/使用條款.md`，
   只取「## 繁體中文」「## 日本語」「## English」「## 简体中文」各段的內容。
 - 首頁文字：這個儲存庫的 `landing.json`。
-- 外觀照 `設計稿/產品介紹網站_2026-11-12/定案.md`：白天＝午後手帳、夜晚＝雨夜床邊窗，右上切換。
+- 外觀照 `設計稿/產品介紹網站_2026-11-12/定案.md`：白天＝午後手帳、夜晚＝夜晚床邊窗，右上切換。
 
 用法：python3 build.py [主程式儲存庫路徑]（預設 ~/Projects/Money_Manager）
 """
@@ -33,13 +33,16 @@ LANGS = [  # (資料夾, md 段落標題, html lang, 切換列顯示)
 ]
 PAGES = {"privacy": "隱私權政策.md", "terms": "使用條款.md"}
 TEXT = json.loads((ROOT / "landing.json").read_text(encoding="utf-8"))
-SHOTS = ["s01", "auto-note", "auto-list", "s06", "s08", "s09", "s04", "s03", "s05"]
-ICONS = ["pen", "home", "ring", "stamp", "two", "widget", "plane", "cal"]
+# 各語言的頁尾社群連結（沒列的用脆）
+SOCIAL = {"ja": ("X @yuzuki_studio", "https://x.com/yuzuki_studio")}
+# 日文用 X 專用的 TestFlight 連結；也不放 Android 測試按鈕
+TESTFLIGHT_BY_LANG = {"ja": "https://testflight.apple.com/join/gyKC5Jf5"}
+NO_ANDROID_BUTTON = {"ja"}
 
 FONTS = '<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Huninn&family=LXGW+WenKai+TC:wght@400;700&display=swap">'
 
 CSS = """
-/* 版面照旅圖官網：窄單欄置中、頂上膠囊分頁、一段一張卡片。白天＝午後手帳、夜晚（html.dark）＝App 的雨夜床邊窗配色（暖黑、琥珀、深咖啡毛玻璃；11-16 選 B 房間照片當背景） */
+/* 版面照旅圖官網：窄單欄置中、頂上膠囊分頁、一段一張卡片。白天＝午後手帳、夜晚（html.dark）＝App 的夜晚配色（暖黑、琥珀、深咖啡毛玻璃；11-16 選 B 房間照片當背景） */
 :root{
   --bg:#fcf4e6;--card:#fffaf1;--ink:#5a3826;--mute:#8f6f5c;--line:#5a3826;
   --honey:#f6dcab;--peach:#f5cdbf;--cta:#f0a08e;--cta-ink:#4a2a1c;--chip:#fbe7c6;--tag:#cfe3b8;--tag-ink:#3f5a2a;--link:#a2553a;
@@ -61,13 +64,13 @@ img{max-width:100%}
 [hidden]{display:none!important}
 .deco{position:fixed;inset:0;pointer-events:none;z-index:0}
 html:not(.dark) .deco{background:radial-gradient(260px 200px at 0 0,rgba(255,214,150,.55),transparent 70%),radial-gradient(240px 220px at 100% 100%,rgba(245,205,191,.6),transparent 70%)}
-html.dark .deco::before{content:"";position:absolute;inset:-60px;background:url(../img/night.jpg) center/cover;filter:blur(26px) brightness(.58) saturate(1.15)}
+html.dark .deco::before{content:"";position:absolute;inset:-60px;background:url(../img/home/zh-Hant-room-night.jpg) center/cover;filter:blur(26px) brightness(.58) saturate(1.15)}
 html.dark .deco::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,8,6,.15),rgba(10,8,6,.6))}
 .wrap{position:relative;z-index:1;max-width:520px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:16px 40px;display:grid;gap:18px}
 a{color:inherit}
 h1,h2,h3{font-family:var(--hand);font-weight:700;margin:0;text-wrap:balance}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-.card,.feat,.nav a,.btn,.trust div,.ic,.theme,.lang select{transition:background-color .4s,border-color .4s,color .4s,box-shadow .4s}
+.card,.nav a,.btn,.theme,.lang select{transition:background-color .4s,border-color .4s,color .4s,box-shadow .4s}
 
 /* 頁首 */
 .top{display:flex;align-items:center;justify-content:space-between;gap:10px}
@@ -100,47 +103,85 @@ html.dark .card{backdrop-filter:blur(14px)}
 .card h2{font-size:21px;margin-bottom:6px}
 .sub{color:var(--mute);font-size:13.5px;margin:0 0 14px}
 
-/* 大圖 */
+/* 首頁：主圖是會動的房間；影片沒播時就是同一張圖，不留空洞 */
 .hero{padding:0;overflow:hidden}
-.hero .pic{position:relative;aspect-ratio:1092/510;max-width:100%;background:linear-gradient(180deg,rgba(60,30,14,.5),rgba(60,30,14,0) 64%),url(../img/day.jpg) center/cover no-repeat}
-.hero .pic::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(12,14,40,.45),rgba(12,14,40,0) 64%),url(../img/night.jpg) center/cover;opacity:0;transition:opacity .6s ease}
-html.dark .hero .pic::before{opacity:1}
-.hero .txt{position:absolute;z-index:1;left:16px;top:14px;right:16px;color:#fff8ec;text-shadow:0 1px 10px rgba(60,30,15,.5)}
-.hero h1{font-size:clamp(24px,7vw,30px);line-height:1.2}
-.hero p{margin:4px 0 0;font-size:14px;max-width:24em}
-
-/* 大圖下的下載按鈕 */
+.hero .txt{padding:18px 18px 12px}
+.hero h1{font-size:clamp(26px,7.6vw,34px);line-height:1.25}
+.hero .txt p{margin:6px 0 0;font-size:15.5px;color:var(--mute)}
 .hero .get{padding:14px 16px 16px}
-.hero .get .cta{margin-top:0}
-.hero .get .note{margin-top:10px;text-wrap:pretty}
-/* 功能格 */
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px}
-.feat{display:flex;gap:10px;align-items:flex-start;padding:11px 12px;border-radius:14px;background:var(--card);border:var(--bw) solid var(--line);box-shadow:2px 2px 0 var(--line);min-width:0}
-html.dark .feat{background:rgba(255,236,214,.04);box-shadow:none}
-.ic{flex:none;width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:var(--chip);border:var(--bw) solid var(--line)}
-.ic svg{width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
-.feat h3{font-size:15.5px;line-height:1.35}
-.feat p{margin:2px 0 0;font-size:12.5px;color:var(--mute);line-height:1.55}
+.vid{position:relative;overflow:hidden;background:var(--chip)}
+.vid img,.vid video{display:block;width:100%;height:auto;aspect-ratio:var(--ar)}
+.vid img{object-fit:cover}
+.vid video{position:absolute;inset:0;height:100%;object-fit:cover;opacity:0;transition:opacity .3s}
+.vid video.on{opacity:1}
+.hero .vid{border-block:var(--bw) solid var(--line)}
+html.dark .d,html:not(.dark) .n{display:none!important}
 .cta{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
+.cta.one{grid-template-columns:1fr}
+.hero .cta{margin-top:0}
 .btn{display:flex;align-items:center;justify-content:center;text-align:center;min-height:46px;padding:8px 12px;border-radius:999px;font:700 15px var(--hand);text-decoration:none;background:var(--cta);color:var(--cta-ink);border:var(--bw) solid var(--line);box-shadow:3px 3px 0 var(--line)}
 .btn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--line)}
 .btn.off{background:transparent;color:var(--mute);box-shadow:none;cursor:default}
 html.dark .btn{box-shadow:0 8px 22px -10px rgba(255,180,94,.75)}
 html.dark .btn.off{box-shadow:none}
 .note{font-size:12.5px;color:var(--mute);margin:12px 0 0}
-
-/* 看畫面 */
-.strip{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;padding:4px 4px 10px;margin-inline:-4px;scrollbar-width:thin}
-.shot{flex:none;width:46%;max-width:200px;scroll-snap-align:start;margin:0}
-.shot img{display:block;width:100%;height:auto;aspect-ratio:600/1305;object-fit:cover;border-radius:14px;border:var(--bw) solid var(--line)}
-.shot figcaption{font-size:12.5px;color:var(--mute);text-align:center;margin-top:6px}
-
-
-/* 隱私四格 */
-.trust{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.trust div{background:var(--card);border:var(--bw) solid var(--line);border-radius:14px;padding:10px 12px;font-size:13px}
-html.dark .trust div{background:rgba(255,236,214,.04)}
-.trust b{display:block;font:700 15px var(--hand)}
+.big h2{font-size:25px;line-height:1.35;margin-bottom:4px}
+.big .lead,.pt p,.pic figcaption{text-wrap:pretty}
+.big .lead{text-wrap:balance;margin:0 0 14px;font-size:14.5px;color:var(--mute)}
+/* 圖框：上緣貼一截紙膠帶 */
+.pic{position:relative;margin:0}
+.pic>img,.pic>.vid,.draw{display:block;width:100%;height:auto;border-radius:16px;border:var(--bw) solid var(--line);overflow:hidden}
+.pic.t::before{content:"";position:absolute;z-index:2;left:50%;top:-11px;width:92px;height:24px;margin-left:-46px;transform:rotate(-3deg);background:repeating-linear-gradient(90deg,rgba(244,205,120,.94) 0 8px,rgba(250,224,164,.94) 8px 16px);clip-path:polygon(0 0,100% 0,97% 25%,100% 50%,97% 75%,100% 100%,0 100%,3% 75%,0 50%,3% 25%)}
+.pic.t.pink::before{background:repeating-linear-gradient(90deg,rgba(232,160,174,.92) 0 7px,rgba(242,190,200,.92) 7px 14px)}
+.pic.t.green::before{background:repeating-linear-gradient(90deg,rgba(164,190,160,.94) 0 7px,rgba(196,214,190,.94) 7px 14px)}
+.pic figcaption{margin:8px 2px 0;font-size:14px;line-height:1.6;color:var(--mute)}
+.gap{display:grid;gap:24px;margin-top:20px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+/* 三點 */
+.pt h3{font-size:19px;line-height:1.4}
+.pt>p{margin:3px 0 18px;font-size:14.5px;color:var(--mute)}
+.tip{margin:22px 0 0;font:400 15.5px/1.7 var(--hand)}
+.tip span,.mark{background:linear-gradient(transparent 58%,rgba(244,205,120,.55) 58% 94%,transparent 94%)}
+html.dark .tip span,html.dark .mark{background:linear-gradient(transparent 58%,rgba(255,194,122,.28) 58% 94%,transparent 94%)}
+/* 網頁自己畫的小示意（沒有對應語言的截圖時用） */
+.draw{position:relative;padding:20px 16px 26px;background:#efe6d6;color:#4a3a31;font:400 14px/1.5 var(--ui)}
+html.dark .draw{background:#191410;color:#FFF3E3}
+.sheet{background:#fbf7ef;border-radius:16px;padding:14px;box-shadow:0 6px 18px -10px rgba(90,56,38,.5)}
+html.dark .sheet{background:#241c16;box-shadow:none;border:1px solid rgba(255,236,214,.1)}
+.lab{position:absolute;right:14px;bottom:5px;font-size:11px;line-height:1.4;opacity:.62}
+.noti{display:flex;gap:10px;align-items:center;background:#fffdf9;border-radius:14px;padding:10px 12px;box-shadow:0 6px 16px -10px rgba(90,56,38,.6)}
+html.dark .noti{background:#2b221b;box-shadow:none}
+.app{flex:none;width:34px;height:34px;border-radius:9px;display:grid;place-items:center;background:#c97378;color:#fff;font-size:11px;font-weight:700}
+.app.b{background:#8f7d6b}.app.s{width:22px;height:22px;border-radius:6px;font-size:8px}
+.noti b,.row b{display:block;font-size:14px}
+.noti small,.row small{display:block;font-size:12.5px;opacity:.72}
+.amt{font:700 34px/1.2 Georgia,"Times New Roman",serif;color:#c97378;margin:8px 0 6px}
+html.dark .amt{color:#F6B1A8}
+.kv{display:flex;justify-content:space-between;gap:10px;border-top:1px solid rgba(120,90,70,.18);padding:7px 0;font-size:13.5px}
+html.dark .kv{border-color:rgba(255,236,214,.12)}
+.kv span{opacity:.7}
+.ok{margin-top:10px;background:#c97378;color:#fff;border-radius:999px;text-align:center;padding:9px;font-weight:700}
+html.dark .ok{background:#FFC27A;color:#2B1A12}
+.row{display:flex;gap:10px;align-items:center}
+.row>div{flex:1;min-width:0}
+.row em{font:700 16px Georgia,serif;font-style:normal;color:#c97378}
+html.dark .row em{color:#F6B1A8}
+.row img{width:44px;height:44px;flex:none;border-radius:50%;background:#f0cdbb;object-fit:contain;padding:2px}
+html.dark .row img{background:#6b5040}
+.sheet .row+.row{border-top:1px dashed rgba(120,90,70,.3);margin-top:10px;padding-top:10px}
+html.dark .sheet .row+.row{border-color:rgba(255,236,214,.18)}
+.pill{flex:none;border:1.5px solid #c97378;color:#c97378;border-radius:999px;padding:2px 14px;font-weight:700;font-size:13.5px}
+html.dark .pill{border-color:#FFC27A;color:#FFC27A}
+.hid{background:#a893c0;color:#fff;border-radius:6px;padding:1px 8px;font-size:13px;white-space:nowrap}
+.sent{margin:10px 0 0;font-size:13px;opacity:.75}
+.flow{display:grid;gap:12px}
+.flow>:nth-child(2){animation:flow2 8s infinite}.flow>:nth-child(3){animation:flow3 8s infinite}
+@keyframes flow2{0%,10%{opacity:0;transform:translateY(8px)}18%,92%{opacity:1;transform:none}98%,100%{opacity:0}}
+@keyframes flow3{0%,44%{opacity:0;transform:translateY(8px)}52%,92%{opacity:1;transform:none}98%,100%{opacity:0}}
+:lang(ja) h1,:lang(ja) h2,:lang(ja) .txt p,:lang(ja) .lead,:lang(ja) figcaption{word-break:auto-phrase;line-break:strict}
+.bye{text-align:center}
+.bye p{font:700 18px/1.75 var(--hand);margin:0;text-wrap:balance}
+.bye span{display:inline-block;white-space:pre-wrap}
 
 /* 條款、隱私權政策 */
 .doc article{max-width:62ch}
@@ -173,20 +214,32 @@ footer a{text-underline-offset:3px}
 .guide .pics{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:10px}
 .guide img{width:100%;height:auto;border-radius:12px;border:var(--bw) solid var(--line)}
 .tips{margin:0;padding-left:1.2em;display:grid;gap:6px;font-size:13.5px}
-@media (max-width:380px){.grid{grid-template-columns:1fr}.cta{grid-template-columns:1fr}.brand b{font-size:17px}.theme span{display:none}.theme{padding:0 9px}}
-@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+@media (max-width:380px){.cta{grid-template-columns:1fr}.brand b{font-size:17px}.theme span{display:none}.theme{padding:0 9px}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 """
 
-SVG = """<svg width="0" height="0" style="position:absolute" aria-hidden="true">
-<symbol id="i-pen" viewBox="0 0 24 24"><path d="M4 20l4-1 11-11-3-3L5 16z"/><path d="M14 6l3 3"/></symbol>
-<symbol id="i-home" viewBox="0 0 24 24"><path d="M4 11l8-7 8 7v9H4z"/><path d="M10 20v-5h4v5"/></symbol>
-<symbol id="i-ring" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 4a8 8 0 0 1 8 8"/><path d="M12 9v3l2 2"/></symbol>
-<symbol id="i-stamp" viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="14" rx="2"/><circle cx="9" cy="10" r="1.8"/><circle cx="15" cy="10" r="1.8"/><circle cx="9" cy="15" r="1.8"/><path d="M14 15h2"/></symbol>
-<symbol id="i-two" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><circle cx="16.5" cy="9" r="2.5"/><path d="M3.5 19c.6-3.2 2.8-5 5.5-5s4.9 1.8 5.5 5"/><path d="M15 14.2c2.6-.4 4.8 1.2 5.5 4.3"/></symbol>
-<symbol id="i-widget" viewBox="0 0 24 24"><rect x="4" y="4" width="7" height="7" rx="2"/><rect x="13" y="4" width="7" height="7" rx="2"/><rect x="4" y="13" width="16" height="7" rx="2"/></symbol>
-<symbol id="i-plane" viewBox="0 0 24 24"><path d="M3 13l18-7-5 14-4-5-5 2z"/><path d="M12 15l9-9"/></symbol>
-<symbol id="i-cal" viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/><path d="M9 14l2 2 4-4"/></symbol>
-</svg>"""
+# 影片：看得到才載、看不到就停；省流量、2G、減少動態時只留圖片；切換日夜時換另一支
+VIDEO_JS = """
+<script>(function(){
+var c=navigator.connection||{},rm=matchMedia('(prefers-reduced-motion: reduce)');
+function quiet(){return rm.matches||c.saveData||/2g/.test(c.effectiveType||'')}
+var R=document.documentElement,vs=[].slice.call(document.querySelectorAll('.vid video'));
+function src(v){return R.classList.contains('dark')?v.dataset.night:v.dataset.day}
+function sync(v){
+  if(!v.seen||quiet()){v.pause();if(quiet())v.classList.remove('on');return}
+  var s=src(v);if(v.getAttribute('src')!==s){v.classList.remove('on');v.setAttribute('src',s)}
+  var p=v.play();if(p&&p.catch)p.catch(function(){v.classList.remove('on')});
+}
+vs.forEach(function(v){v.muted=true;v.addEventListener('playing',function(){v.classList.add('on')});v.addEventListener('error',function(){v.classList.remove('on')})});
+function start(){
+  if(!('IntersectionObserver' in window)){vs.forEach(function(v){v.seen=true;sync(v)});return}
+  var io=new IntersectionObserver(function(es){es.forEach(function(x){x.target.seen=x.isIntersecting;sync(x.target)})},{rootMargin:'120px 0px',threshold:.05});
+  vs.forEach(function(v){io.observe(v)});
+}
+if(document.readyState==='complete')start();else addEventListener('load',start);
+new MutationObserver(function(){vs.forEach(sync)}).observe(R,{attributes:true,attributeFilter:['class']});
+rm.addEventListener&&rm.addEventListener('change',function(){vs.forEach(sync)});
+})()</script>"""
 
 # 先決定白天／夜晚，避免閃一下：記住的選擇 > 手機深淺色
 EARLY = """<script>(function(){var t=null;try{t=localStorage.getItem('mm-theme')}catch(e){}if(!t)t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';if(t==='dark')document.documentElement.classList.add('dark')})()</script>"""
@@ -291,6 +344,7 @@ def shell(lang, html_lang, page_key, title, desc, body):
         f'<link rel="alternate" hreflang="{hl}" href="{SITE}/{code}/{file}">' for code, _, hl, _ in LANGS
     )
     brand = T["name"].split(":")[0]
+    social_label, social_url = SOCIAL.get(lang, (f'{T["threads"]} @yuzuki.tw', THREADS))
     return f"""<!doctype html>
 <html lang="{html_lang}">
 <head>
@@ -301,7 +355,7 @@ def shell(lang, html_lang, page_key, title, desc, body):
 <meta property="og:type" content="website">
 <meta property="og:title" content="{html.escape(title)}">
 <meta property="og:description" content="{html.escape(desc)}">
-<meta property="og:image" content="{SITE}/img/day.jpg">
+<meta property="og:image" content="{SITE}/img/home/{lang}-room-day.jpg">
 <meta property="og:url" content="{SITE}/{lang}/{file}">
 <meta name="theme-color" content="#fcf4e6" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0A0806" media="(prefers-color-scheme: dark)">
@@ -325,7 +379,7 @@ def shell(lang, html_lang, page_key, title, desc, body):
 <nav class="nav">{tabs}</nav>
 {body}
 <footer>
-<nav><a href="privacy.html">{html.escape(T["nav"][1])}</a><a href="terms.html">{html.escape(T["nav"][2])}</a><a href="{THREADS}" target="_blank" rel="noopener">{html.escape(T["threads"])} @yuzuki.tw</a></nav>
+<nav><a href="privacy.html">{html.escape(T["nav"][1])}</a><a href="terms.html">{html.escape(T["nav"][2])}</a><a href="{social_url}" target="_blank" rel="noopener">{html.escape(social_label)}</a></nav>
 <div>{html.escape(T["studio"])} · © 2026</div>
 </footer>
 </div>
@@ -335,25 +389,85 @@ def shell(lang, html_lang, page_key, title, desc, body):
 """
 
 
+def IOS_LINK(lang):
+    return TESTFLIGHT_BY_LANG.get(lang, TESTFLIGHT)
+
+
+def picture(name, alt, ar=None, eager=False, cls=""):
+    """img/home/ 的圖；給 ar 時固定比例，避免載入時跳動。"""
+    size = f' width="{ar[0]}" height="{ar[1]}"' if ar else ""
+    load = "" if eager else ' loading="lazy"'
+    c = f' class="{cls}"' if cls else ""
+    return f'<img{c} src="../img/home/{name}.jpg" alt="{html.escape(alt)}"{size}{load}>'
+
+
+def video(day, night, alt, w, h):
+    """會動的圖：平常就是一張圖，能播時才把影片疊上去（不擋首頁、省流量或減少動態時不載影片）。"""
+    if night:
+        imgs = picture(day, alt, (w, h), cls="d") + picture(night, alt, (w, h), cls="n")
+    else:
+        imgs = picture(day, alt, (w, h))
+    return (f'<div class="vid" style="--ar:{w}/{h}">{imgs}<video muted loop playsinline preload="none" tabindex="-1" aria-hidden="true" '
+            f'data-day="../img/home/{day}.mp4" data-night="../img/home/{night or day}.mp4"></video></div>')
+
+
+def auto_block(lang, A) -> str:
+    """自動記帳：繁中用影片、真畫面與宣傳圖，其他語言用網頁畫的小示意。"""
+    e = html.escape
+    D = A.get("demo")
+    lab = f'<span class="lab">{e(TEXT[lang]["home"]["demoLabel"])}</span>'
+    if D:
+        kv = "".join(f'<div class="kv"><span>{e(a)}</span>{e(b)}</div>' for a, b in D["fields"])
+        top = (f'<figure class="pic t"><div class="draw"><div class="flow"><div class="noti"><span class="app">{e(D["bankTag"])}</span><div><b>{e(D["bank"])}</b><small>{e(D["alert"])}</small></div></div>'
+               f'<div class="sheet"><b>{e(D["shop"])}</b><div class="amt">{e(D["amount"])}</div>{kv}<div class="ok">✓ {e(D["save"])}</div></div>'
+               f'<div class="sheet"><div class="row"><div><b>{e(D["cat"])}</b><small>{e(D["shop"])}</small></div><em>{e(D["minus"])}</em></div></div></div>{lab}</div></figure>')
+        merge = (f'<div class="draw"><div class="sheet"><div class="row"><span class="app b s">{e(D["bankTag"])}</span><div><b>{e(D["bank"])}</b><small>{e(D["alert"])}</small></div></div>'
+                 f'<div class="row"><span class="app s">Pay</span><div><b>{e(D["wallet"])}</b><small>{e(D["shop"])}</small></div><span class="pill">{e(D["split"])}</span></div><div class="amt">{e(D["amount"])}</div></div>{lab}</div>')
+        mask = (f'<div class="draw"><div class="sheet">{D["masked"]}<p class="sent">{e(D["sent"])}</p></div>{lab}</div>')
+    else:
+        top = f'<figure class="pic">{video("auto", None, A["alt"], 720, 900)}</figure>'
+        merge = picture(f"{lang}-merge-day", A["points"][0][0], (900, 716), cls="d") + picture(f"{lang}-merge-night", A["points"][0][0], (900, 716), cls="n")
+        mask = picture("promo5", A["points"][2][0], (720, 491))
+    shows = [merge, video(f"{lang}-swipe", None, A["points"][1][0], 720, 400), mask]
+    pts = "".join(
+        f'<div class="pt"><h3>{e(t)}</h3><p>{e(d)}</p><figure class="pic">{show}</figure></div>'
+        for (t, d), show in zip(A["points"], shows)
+    )
+    return (f'<section class="card big" id="auto"><h2>{e(A["h"])}</h2><p class="lead">{e(A["p"])}</p>{top}'
+            f'<div class="gap">{pts}</div><p class="tip"><span>{e(A["tip"])}</span></p></section>')
+
+
 def landing(lang) -> str:
     T = TEXT[lang]
+    H = T["home"]
     e = html.escape
-    feats = "".join(
-        f'<div class="feat"><span class="ic"><svg aria-hidden="true"><use href="#i-{icon}"/></svg></span><div><h3>{e(t)}</h3><p>{e(d)}</p></div></div>'
-        for icon, (t, d) in zip(ICONS, T["feats"])
+    androidbtn = "" if lang in NO_ANDROID_BUTTON else f'<a class="btn" href="android.html">{e(T["ctaAndroid"])}</a>'
+    cta = f'<div class="cta{"" if androidbtn else " one"}"><a class="btn" href="{IOS_LINK(lang)}" target="_blank" rel="noopener">{e(T["ctaTest"])}</a>{androidbtn}</div>'
+    parts = [f"""<section class="card hero"><div class="txt"><h1>{e(H["h1"])}</h1><p>{e(H["p"])}</p></div>
+{video(f"{lang}-day", f"{lang}-night", T["heroAlt"], 720, 561)}
+<div class="get">{cta}</div></section>"""]
+    if "auto" in H:
+        parts.append(auto_block(lang, H["auto"]))
+    R = H["room"]
+    parts.append(f'<section class="card big honey" id="room"><h2>{e(R["h"])}</h2><p class="lead">{e(R["p"])}</p><div class="gap">'
+                 f'<figure class="pic t">{picture(f"{lang}-room-day", T["day"], (900, 534))}</figure>'
+                 f'<figure class="pic t pink">{picture(f"{lang}-room-night", T["night"], (900, 534))}</figure></div></section>')
+    D = H["detail"]
+    figs = "".join(
+        f'<figure class="pic">{picture(f"{lang}-{n}", cap, size)}<figcaption>{e(cap)}</figcaption></figure>'
+        for (n, size), cap in zip([("tape", (900, 537)), ("paper", (900, 481)), ("tag", (900, 496))], D["caps"])
     )
-    shots = "".join(
-        f'<figure class="shot"><img src="../img/{name}.jpg" alt="{e(cap)}"{"" if i == 0 else " loading=\"lazy\""} width="600" height="1305"><figcaption>{e(cap)}</figcaption></figure>'
-        for i, (name, cap) in enumerate(zip(SHOTS, T["shots"]))
-    )
-    trust = "".join(f"<div><b>{e(t)}</b>{e(d)}</div>" for t, d in T["trust"])
-    return f"""{SVG}
-<section class="card hero"><div class="pic" role="img" aria-label="{e(T["heroAlt"])}"><div class="txt"><h1>{e(T["name"])}</h1><p>{e(T["tagline"])}</p></div></div>
-<div class="get"><div class="cta"><a class="btn" href="{TESTFLIGHT}" target="_blank" rel="noopener">{e(T["ctaTest"])}</a><a class="btn" href="android.html">{e(T["ctaAndroid"])}</a></div>
-<p class="note">{e(T["note"])}</p></div></section>
-<section class="card"><h2>{e(T["featTitle"])}</h2><div class="grid">{feats}</div></section>
-<section class="card" id="shots"><h2>{e(T["shotsTitle"])}</h2><p class="sub">{e(T["shotsSub"])}</p><div class="strip">{shots}</div></section>
-<section class="card peach"><h2>{e(T["trustTitle"])}</h2><div class="trust">{trust}</div></section>"""
+    parts.append(f'<section class="card big" id="detail"><h2>{e(D["h"])}</h2><div class="gap">{figs}</div></section>')
+    if "couple" in H:
+        C = H["couple"]
+        rows = "".join(f'<div class="row"><img src="../img/home/av-{av}.png" alt="{e(who)}" loading="lazy" width="44" height="44"><div><b>{e(t)}</b><small>{e(who)}</small></div><em>{e(m)}</em></div>' for av, t, who, m in C["rows"])
+        parts.append(f'<section class="card big peach" id="couple"><h2>{e(C["h"])}</h2><p class="lead">{e(C["p"])}</p><figure class="pic t pink"><div class="draw"><div class="sheet"><p style="margin:0 0 10px;font:700 17px var(--hand)"><span class="mark">{e(C["book"])}</span></p>{rows}</div><span class="lab">{e(H["demoLabel"])}</span></div></figure></section>')
+    if "budget" in H:
+        B = H["budget"]
+        parts.append(f'<section class="card big" id="budget"><h2>{e(B["h"])}</h2><p class="lead">{e(B["p"])}</p><figure class="pic">'
+                     f'{picture(f"{lang}-bud-day", B["h"], (900, 724), cls="d")}{picture(f"{lang}-bud-night", B["h"], (900, 724), cls="n")}</figure></section>')
+    parts.append(f'<section class="card bye"><p>{"".join(f"<span>{e(x)}</span>" for x in H["bye"])}</p>{cta}</section>')
+    return "\n".join(parts) + VIDEO_JS
 
 
 def android(lang) -> str:
@@ -365,7 +479,8 @@ def android(lang) -> str:
              '<path d="M8 4.6V8l2.3 1.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>')
     wait = lambda st: f'<p class="wait">{clock}<span>{e(st[3])}</span></p>' if len(st) > 3 else ""
     # 第 1、2 步按鈕下方「看教學」，點開才顯示標註好的截圖（個資已換成兔子）（使用者 2026-11-16）
-    pics = {0: ["guide-1a", "guide-1b"], 1: ["guide-2"]}
+    # 教學截圖是中文畫面，日文、英文頁不放
+    pics = {} if lang in ("ja", "en") else {0: ["guide-1a", "guide-1b"], 1: ["guide-2"]}
     guide = lambda i, t: (f'<details class="guide"><summary>{e(A["guide"])}</summary><div class="pics">'
                           + "".join(f'<img src="../img/{n}.jpg" alt="{e(t)}" loading="lazy" width="600" height="1304">' for n in pics[i])
                           + '</div></details>') if i in pics else ""
