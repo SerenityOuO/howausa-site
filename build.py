@@ -389,8 +389,12 @@ def shell(lang, html_lang, page_key, title, desc, body):
 """
 
 
+# 依語言連各國 App Store（不帶國家的連結在電腦上會開美國英文頁）
+APP_STORE_BY_LANG = {"zh-Hant": "https://apps.apple.com/tw/app/id6831418074", "ja": "https://apps.apple.com/jp/app/id6831418074"}
+
+
 def IOS_LINK(lang):
-    return APP_STORE
+    return APP_STORE_BY_LANG.get(lang, APP_STORE)
 
 
 def picture(name, alt, ar=None, eager=False, cls=""):
