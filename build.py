@@ -18,7 +18,8 @@ ROOT = Path(__file__).resolve().parent
 APP = Path(sys.argv[1] if len(sys.argv) > 1 else Path.home() / "Projects/Money_Manager")
 SRC = APP / "上架準備"
 SITE = "https://serenityouo.github.io/howausa-site"
-TESTFLIGHT = "https://testflight.apple.com/join/cSRpbd5j"
+# 2026-11-25 上架切換：iPhone 按鈕改連 App Store（10 區開了才打得開）
+APP_STORE = "https://apps.apple.com/app/id6831418074"
 THREADS = "https://www.threads.com/@yuzuki.tw"
 # Android 封閉測試（2026-11-15）：先加入 Google 群組 → 成為測試人員 → Play 下載
 GROUP = "https://groups.google.com/g/howausa-testers"
@@ -35,8 +36,7 @@ PAGES = {"privacy": "隱私權政策.md", "terms": "使用條款.md"}
 TEXT = json.loads((ROOT / "landing.json").read_text(encoding="utf-8"))
 # 各語言的頁尾社群連結（沒列的用脆）
 SOCIAL = {"ja": ("X @yuzuki_studio", "https://x.com/yuzuki_studio")}
-# 日文用 X 專用的 TestFlight 連結；也不放 Android 測試按鈕
-TESTFLIGHT_BY_LANG = {"ja": "https://testflight.apple.com/join/gyKC5Jf5"}
+# 日文不放 Android 測試按鈕
 NO_ANDROID_BUTTON = {"ja"}
 
 FONTS = '<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Huninn&family=LXGW+WenKai+TC:wght@400;700&display=swap">'
@@ -390,7 +390,7 @@ def shell(lang, html_lang, page_key, title, desc, body):
 
 
 def IOS_LINK(lang):
-    return TESTFLIGHT_BY_LANG.get(lang, TESTFLIGHT)
+    return APP_STORE
 
 
 def picture(name, alt, ar=None, eager=False, cls=""):
